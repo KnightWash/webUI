@@ -1,3 +1,21 @@
-<header>
-  hello world
-</header>
+<!-- Toolbar navigation help from: https://www.techiediaries.com/angular-material-navigation-toolbar-sidenav/ -->
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>KnightWash</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/accounts'"> Home </a>
+      <a mat-button [routerLink]="'/create-account'"> About </a>
+      <a mat-button [routerLink]="'/contacts'"> Register for Testing </a>
+
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<button (click)="subscribeNewTopic()">
+  Subscribe!
+</button>
