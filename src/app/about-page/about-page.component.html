@@ -1,1 +1,62 @@
-<p>about-page works!</p>
+<header>
+  <h1>About</h1>
+</header>
+
+<body>
+  <h2> Vision </h2>
+  <div>
+    It's easy to lose track of how long your laundry's been running - and sometimes the estimated time remaining on the
+    machines is even <i>wrong</i>. Additionally, all machines may be in use, causing students to take extra trips to the
+    laundry room just to see if a machine is available.
+    <p></p>
+    Our solution: A monitoring setup that connects to the laundry machines in university dorms in order to keep track of
+    machines being used, along with their current status. Students will be able to access this information through a
+    mobile app that displays
+    simple
+    information about time remaining for all machines and their availability.
+  </div>
+
+  <h2>
+    Team — Include basic information on the team members (one-to-two-sentence descriptions of each, images optional).
+  </h2>
+  <div>
+    WIP
+  </div>
+
+  <h2>
+    Code
+  </h2>
+  <div>
+    Source code for some or all components of our project will be made available at
+    <a href="https://github.com/orgs/knightwash/repositories">our GitHub organization</a> - this will also include
+    installation instructions, as appropriate/needed.
+  </div>
+
+  <h2>
+    Report — For CS 396, this is an updated version of your project proposal that includes any necessary modifications
+    to
+    the original proposal content. For CS 398, this is your complete final report.
+    Also include:
+    a navigation link to the Department of Computer Science website.
+    presentation materials from your status report. For CS 398, include your final presentation.
+    research papers and other useful materials (as appropriate).
+  </h2>
+  <div>
+    The setup so far is as follows:
+    <ul>
+      <li>
+        TP-Link Kasa Smart Wi-Fi Plugs connected to the WiFi in the residence halls (not eduroam!) - specifically,
+        models that support the "emeter" power monitoring system with <a
+          href="https://python-kasa.readthedocs.io/en/latest/">python-kasa</a>
+      </li>
+      <li>
+        One or more Raspberry Pis (or other dedicated server hardware) also connected to the residential LAN,
+        which will be instructed to connect to the smart plugs and send their data to an MQTT server.
+      </li>
+      <li>
+        A mobile app that fetches the data posted by the Raspberry Pis from the previously mentioned MQTT server
+      </li>
+    </ul>
+  </div>
+
+</body>
