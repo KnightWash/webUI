@@ -4,7 +4,7 @@
     <h1>KnightWash</h1>
     <span class="menu-spacer"></span>
     <div>
-      <a mat-button [routerLink]="'/accounts'" routerLinkActive="active"> Home </a>
+      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active"> Home </a>
       <a mat-button [routerLink]="'/about-page'" routerLinkActive="active"> About </a>
       <a mat-button [routerLink]="'/register-page'" routerLinkActive="active"> Register for Testing </a>
 
@@ -12,25 +12,4 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<h1>Beta</h1>
-<ng-container *ngFor="let machine of machines">
-  <mat-card *ngIf="machine.name.indexOf('/beta') > -1">
-    <mat-card-header>{{machine.name}}</mat-card-header>
-    <mat-card-content>
-      <p>
-        {{machine.status}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
-<h1>Gamma</h1>
-<ng-container *ngFor="let machine of machines">
-  <mat-card *ngIf="machine.name.indexOf('/gamma') > -1">
-    <mat-card-header>{{machine.name}}</mat-card-header>
-    <mat-card-content>
-      <p>
-        {{machine.status}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<router-outlet></router-outlet>
