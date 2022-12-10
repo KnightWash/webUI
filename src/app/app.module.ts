@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from "@angular/material/card";
 
 
 import { AppComponent } from './app.component';
@@ -17,8 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
-  port: 8080,
-  path: '/calvin/beta/washer/test'
+  port: 8081,
+  path: "/mqtt",
+  protocol: 'ws',
+  clientId: 'washer-99'
 }
 
 
@@ -36,6 +39,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
     MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
   ],
   providers: [],
