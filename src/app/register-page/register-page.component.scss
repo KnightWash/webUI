@@ -1,0 +1,30 @@
+.submit-button {
+  background: #8c2131;
+  color: #f3cd00;
+  border: 2px solid #eee;
+  border-radius: 40px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  padding: 1vw;
+  -webkit-transition-duration: 0.4s; //for Safari, apparently?
+  transition-duration: 1s;
+}
+
+.submit-button:hover {
+  background: #f3cd00;
+  color: #8c2131;
+  border: 2px solid #eee;
+  border-radius: 40px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+}
+
+.submit-button:active {
+  background: greenyellow;
+  color: black;
+  border: 2px solid #eee;
+  border-radius: 40px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  transition: 0s;
+}
