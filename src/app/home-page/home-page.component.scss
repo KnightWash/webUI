@@ -11,13 +11,16 @@
   margin-right: 5%;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.machine-header {
+.building-header {
+  font-size: 1.5vw;
+}
 
+.machine-header {
+  font-size: 1vw;
 }

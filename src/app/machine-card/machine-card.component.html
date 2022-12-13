@@ -1,8 +1,11 @@
-<mat-card class="machine-card">
-  <mat-card-header>{{machine.name}}</mat-card-header>
-  <mat-card-content>
-    <p>
-      {{machine.status}}
+<mat-card [ngStyle]="{'background-color': (machine.status=='Off') ? '#b1ffb1' : '#ffb7b7'}">
+  <mat-card-content style="display: flex">
+    <p class="name-label">{{machine.name}}</p>
+    <p *ngIf="machine.status === 'Off'" class="off-label">
+      Open
+    </p>
+    <p *ngIf="machine.status === 'On'" class="on-label">
+      Running
     </p>
   </mat-card-content>
 </mat-card>

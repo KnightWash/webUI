@@ -1,5 +1,19 @@
 .machine-card {
   flex: 1;
-  border-width: 1px;
-  border-color: black;
+}
+.name-label {
+  font-size: 0.8vw;
+  flex: 1;
+}
+.on-label {
+  font-size: 1.2vw;
+  color: darkred;
+  flex: 1;
+  margin-left: 2%
+}
+.off-label {
+  font-size: 1.2vw;
+  color: darkgreen;
+  flex: 1;
+  margin-left: 2%
 }

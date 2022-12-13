@@ -1,5 +1,5 @@
 
-<h1>Beta</h1>
+<h1 class="building-header">Beta</h1>
 <div class="row">
   <div class="column">
     <h2 class="machine-header">Washers</h2>
@@ -8,22 +8,22 @@
     </ng-container>
   </div>
   <div class="column">
-    <h2>Dryers</h2>
+    <h2 class="machine-header">Dryers</h2>
     <ng-container class="card-container" *ngFor="let machine of dryers">
       <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/beta') > -1"></app-machine-card>
     </ng-container>
   </div>
 </div>
-<h1>Gamma</h1>
+<h1 class="building-header">Gamma</h1>
 <div class="row">
   <div class="column">
-    <h2>Washers</h2>
+    <h2 class="machine-header">Washers</h2>
     <ng-container class="card-container" *ngFor="let machine of washers">
       <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/gamma') > -1"></app-machine-card>
     </ng-container>
   </div>
   <div class="column">
-    <h2>Dryers</h2>
+    <h2 class="machine-header">Dryers</h2>
     <ng-container class="card-container" *ngFor="let machine of dryers">
       <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/gamma') > -1"></app-machine-card>
     </ng-container>
