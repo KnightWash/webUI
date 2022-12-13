@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component'
 
 @Component({
@@ -8,6 +9,5 @@ import { Machine } from '../home-page/home-page.component'
 })
 export class MachineCardComponent {
   @Input() machine: Machine;
-
 
 }

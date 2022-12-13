@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { MachineCardComponent } from './machine-card/machine-card.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { NotifToggleComponent } from './notif-toggle/notif-toggle.component';
+import { PushNotificationsService } from './push.notification.service';
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
   port: 8081,
@@ -41,7 +44,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AboutPageComponent,
     RegisterPageComponent,
     HomePageComponent,
-    MachineCardComponent
+    MachineCardComponent,
+    NotifToggleComponent
   ],
   imports: [
     BrowserModule,
@@ -54,13 +58,14 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatSlideToggleModule,
     MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [PushNotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

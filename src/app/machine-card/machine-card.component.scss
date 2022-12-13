@@ -7,13 +7,18 @@
 }
 .on-label {
   font-size: 20px;
+  font-weight: 500;
   color: darkred;
   flex: 1;
   margin-left: 2%
 }
 .off-label {
   font-size: 20px;
+  font-weight: 500;
   color: darkgreen;
   flex: 1;
+  margin-left: 2%
+}
+.toggle {
   margin-left: 2%
 }
