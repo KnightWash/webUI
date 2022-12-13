@@ -30,7 +30,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
   port: 8081,
   path: "/mqtt",
-  protocol: 'ws',
+  protocol: 'wss',
   clientId: 'washer-99'
 }
 
