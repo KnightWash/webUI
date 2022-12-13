@@ -1,10 +1,11 @@
 //help with rows and columns from https://www.w3schools.com/howto/howto_css_two_columns.asp
 .card-container {
-  display:flex;
+  display: flex;
   flex: 1;
   border-width: 2px;
   border-color: black;
 }
+
 .column {
   float: left;
   width: 20%;

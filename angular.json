@@ -102,6 +102,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "KnightWash-WebUI:build:production",
+            "firebaseProject": "knightwash-webui-angular",
+            "firebaseHostingSite": "knightwash-webui-angular"
+          }
         }
       }
     }
