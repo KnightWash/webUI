@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-register-page',
@@ -8,3 +9,4 @@ import { Component } from '@angular/core';
 export class RegisterPageComponent {
 
 }
+

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "knightwash-webui-angular": {
+      "hosting": {
+        "KnightWash-WebUI": [
+          "knightwash-webui-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "knightwash-webui-angular"
+  }
+}
