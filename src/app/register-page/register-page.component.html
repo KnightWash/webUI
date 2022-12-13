@@ -4,15 +4,15 @@
 
 <body>
   <div>Enter your email:</div>
-  <input type="text" placeholder="Calvin email, if possible.">
+  <input [(ngModel)]="email" type="text" placeholder="Calvin email, if possible.">
   <div>What platform(s) can you test on?:</div>
-  <input type="text" placeholder="iPhone, Android, PC?">
+  <input [(ngModel)]="platforms" type="text" placeholder="iPhone, Android, PC?">
   <div>Availability for discussion:</div>
-  <textarea
+  <textarea [(ngModel)]="availability"
     placeholder="Let us know when during the week is a good fit to meet with you! The more time slots you can include here, the better."
     cols="30" rows="10"></textarea>
 
   <p></p>
-  <input class="submit-button" type="submit" value="Submit testing application">
+  <input (click)="sendMessage()" class="submit-button" type="submit" value="Submit testing application">
 
 </body>

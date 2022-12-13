@@ -18,7 +18,7 @@ export class RegisterPageComponent {
   }
 
   sendMessage = () => {
-    const testerList = this.db.collection(`knightwash-webui-angular`);
+    const testerList = this.db.collection(`submissions`);
     const userResponse = {
       email: this.email,
       platforms: this.platforms,
