@@ -25,7 +25,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MachineCardComponent } from './machine-card/machine-card.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NotifToggleComponent } from './notif-toggle/notif-toggle.component';
 import { PushNotificationsService } from './push.notification.service';
