@@ -8,8 +8,10 @@
 
 .column {
   float: left;
-  width: 20%;
+  width: 30%;
   margin-right: 5%;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .row:after {
@@ -19,9 +21,12 @@
 }
 
 .building-header {
-  font-size: 1.5vw;
+  font-size: calc(30px + .5vw);
+  margin-top: 2%;
+  font-weight: 500;
+  color: maroon;
 }
 
 .machine-header {
-  font-size: 1vw;
+  font-size: calc(15px + .3vw);
 }
