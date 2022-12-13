@@ -1,22 +1,31 @@
+
 <h1>Beta</h1>
-<ng-container *ngFor="let machine of machines">
-  <mat-card *ngIf="machine.name.indexOf('/beta') > -1">
-    <mat-card-header>{{machine.name}}</mat-card-header>
-    <mat-card-content>
-      <p>
-        {{machine.status}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<div class="row">
+  <div class="column">
+    <h2 class="machine-header">Washers</h2>
+    <ng-container class="card-container" *ngFor="let machine of washers">
+      <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/beta') > -1"></app-machine-card>
+    </ng-container>
+  </div>
+  <div class="column">
+    <h2>Dryers</h2>
+    <ng-container class="card-container" *ngFor="let machine of dryers">
+      <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/beta') > -1"></app-machine-card>
+    </ng-container>
+  </div>
+</div>
 <h1>Gamma</h1>
-<ng-container *ngFor="let machine of machines">
-  <mat-card *ngIf="machine.name.indexOf('/gamma') > -1">
-    <mat-card-header>{{machine.name}}</mat-card-header>
-    <mat-card-content>
-      <p>
-        {{machine.status}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<div class="row">
+  <div class="column">
+    <h2>Washers</h2>
+    <ng-container class="card-container" *ngFor="let machine of washers">
+      <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/gamma') > -1"></app-machine-card>
+    </ng-container>
+  </div>
+  <div class="column">
+    <h2>Dryers</h2>
+    <ng-container class="card-container" *ngFor="let machine of dryers">
+      <app-machine-card [machine] = "machine" *ngIf="machine.name.indexOf('/gamma') > -1"></app-machine-card>
+    </ng-container>
+  </div>
+</div>

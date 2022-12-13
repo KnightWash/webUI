@@ -19,6 +19,7 @@ import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
 import { AboutPageComponent } from './about-page/about-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MachineCardComponent } from './machine-card/machine-card.component';
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
   port: 8081,
@@ -33,7 +34,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AppComponent,
     AboutPageComponent,
     RegisterPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    MachineCardComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 
 
-type Machine = {
+export type Machine = {
   name: string;
   status: string;
 }
@@ -20,7 +20,7 @@ export class HomePageComponent {
 
   private subscription: Subscription;
   topicname: any;
-  msg: any;
+  msg: IMqttMessage;
   isConnected: boolean = false;
   @ViewChild('msglog', { static: true }) msglog: ElementRef;
 
@@ -59,6 +59,7 @@ export class HomePageComponent {
     } else {
       console.log("New machine found!");
       this.machines.push(newMachine);
+      newMachine.name?.indexOf("/washer") > -1 ? this.washers.push(newMachine) : this.dryers.push(newMachine);
       console.log(this.machines);
     }
   }
