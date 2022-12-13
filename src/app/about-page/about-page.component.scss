@@ -7,9 +7,18 @@
   font-weight: 600;
   color: maroon;
   background-color: #ffe13a;
+  padding: 1%
 
 }
 .section-header {
-  font-size: calc(15px + 1vw);
+  font-size: calc(20px + 1vw);
   margin-top: 2%;
+  color: maroon;
+  padding-left: 0.5%
+}
+
+.about-text {
+  font-size: calc(10px + 0.8vw);
+  line-height: 1.5em;
+  padding-left: 0.5%
 }
