@@ -28,7 +28,6 @@ export class NotifToggleComponent {
   }
 
   notify() {
-    console.log("got to notify!")
     let data: Array < any >= [];
     data.push({
         'title': 'Load Complete!',
