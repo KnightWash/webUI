@@ -9,5 +9,10 @@ import { Machine } from '../home-page/home-page.component'
 })
 export class MachineCardComponent {
   @Input() machine: Machine;
+  @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
 
+  onChange(newMachine: Machine) {
+    console.log("got to machine card onChange")
+    this.toggleNotifs.emit(newMachine);
+  }
 }
