@@ -10,6 +10,7 @@
   transition-duration: 1s;
 }
 
+// invert submit button colors on hover
 .submit-button:hover {
   background: #f3cd00;
   color: #8c2131;
@@ -19,6 +20,7 @@
   text-shadow: none;
 }
 
+// make the submit button clearly flash green when clicked
 .submit-button:active {
   background: greenyellow;
   color: black;

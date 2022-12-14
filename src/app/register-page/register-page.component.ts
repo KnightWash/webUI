@@ -18,6 +18,7 @@ export class RegisterPageComponent {
   constructor(private db: AngularFirestore) {
   }
 
+  // when the submit button is clicked...
   sendMessage = () => {
     const testerList = this.db.collection(`submissions`);
     const userResponse = {
@@ -25,8 +26,10 @@ export class RegisterPageComponent {
       platforms: this.platforms,
       availability: this.availability,
     };
+    // ...the database will be filled in with an entry containing anything the user's typed in to the input fields
     testerList.add({ ...userResponse });
 
+    // Clear the value of the input fields when submitted
     // TypeScript is fun https://stackoverflow.com/a/12687137
     const inputs = <HTMLInputElement[]><any>document.getElementsByName('formBox');
     inputs.forEach(input => {
