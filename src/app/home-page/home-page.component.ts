@@ -1,7 +1,9 @@
+// Brian Langejans: TheBguy87
+// Kurt Wietelmann: kwietelmann
+// 12/10/2022
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
-
 
 export type Machine = {
   name: string;
@@ -15,11 +17,14 @@ export type Machine = {
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
+
+  // list for all machines, and then one for each type of machine
   public machines: Machine[] = [];
   public washers: Machine[] = [];
   public dryers: Machine[] = [];
-  public notifs: boolean[] = [];
 
+  // values for mqtt subscription
+  // MQTT help from https://medium.com/@anant.lalchandani/dead-simple-mqtt-example-over-websockets-in-angular-b9fd5ff17b8e
   private subscription: Subscription;
   topicname: any;
   msg: IMqttMessage;
@@ -27,25 +32,23 @@ export class HomePageComponent {
   @ViewChild('msglog', { static: true }) msglog: ElementRef;
 
   constructor(private _mqttService: MqttService) {
+    // Subscribe to all mqtt calvin topics and receive messages from them
     this.subscription = this._mqttService.observe('calvin/#').subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
-    console.log("got past constructing")
   }
 
+  // For when the notification switch changes
   onChange(newMachine: Machine) {
-    console.log("got to home onChange")
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
-    // if the new machine exists,
+    // if the machine passed here already exists and is a washer,
     if (newMachine.name?.indexOf("/washer") > -1 && newSearch) {
-      console.log("changing notif values for a washer!");
-      console.log("Originally " + this.washers[this.washers.indexOf(newSearch)].notifsOn);
-      console.log("Now " + newMachine.notifsOn);
+      // update the existing washer's notification switch value
       this.washers[this.washers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
     } else if (newMachine.name?.indexOf("/dryer") > -1 && newSearch) {
-      console.log("changing notif values for a dryer!");
+      // same for dryers
       this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
     }
@@ -54,11 +57,13 @@ export class HomePageComponent {
   ngOnInit(): void { }
 
   ngOnDestroy(): void {
+    // unsubscribe from all topics
     this.subscription.unsubscribe();
-
   }
 
+  // When a message is received
   public onMessage(): void {
+    // create a new machine out of the message
     const newMachine: Machine =  {
       name: this.msg.topic,
       status: this.msg.payload.toString(),
@@ -67,35 +72,32 @@ export class HomePageComponent {
 
     // search the current machine list for the new machine
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
-    // if the new machine exists,
+    // if the new machine exists, and is a washer,
     if (newMachine.name?.indexOf("/washer") > -1 && newSearch) {
-      console.log("Existing washer found!");
+      // update the notification switch state of the incoming machine to match that of the existing one
+      //console.log("Existing washer found!");
       newMachine.notifsOn = this.washers[this.washers.indexOf(newSearch)].notifsOn;
-      newMachine.notifsOn = this.machines[this.machines.indexOf(newSearch)].notifsOn;
-      console.log(newMachine.notifsOn);
+      // Update the current machine to match the new machine from the message
       this.washers[this.washers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
+      // same for the dryers
     } else if (newMachine.name?.indexOf("/dryer") > -1 && newSearch) {
-      console.log("Existing dryer found!");
+      //console.log("Existing dryer found!");
       newMachine.notifsOn = this.dryers[this.dryers.indexOf(newSearch)].notifsOn;
-      newMachine.notifsOn = this.machines[this.machines.indexOf(newSearch)].notifsOn;
-      console.log(newMachine.notifsOn);
       this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
     } else {
-      console.log("New machine found!");
+      // if the machine doesn't exist in the app yet, add it to the relevent lists
+      //console.log("New machine found!");
       this.machines.push(newMachine);
       newMachine.name?.indexOf("/washer") > -1 ? this.washers.push(newMachine) : this.dryers.push(newMachine);
-      console.log(this.machines);
     }
   }
 
-
+  // subscribe to a new mqtt topic
   public subscribeNewTopic(): void {
-    console.log('inside subscribe new topic')
     this.subscription = this._mqttService.observe("/calvin/#").subscribe((message: IMqttMessage) => {
       this.msg = message;
-      console.log('msg: ', message);
     });
   }
 }

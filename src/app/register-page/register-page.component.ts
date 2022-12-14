@@ -1,7 +1,8 @@
+// Brian Langejans: TheBguy87
+// Kurt Wietelmann: kwietelmann
+// 12/10/2022
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { initializeApp } from '@angular/fire/app';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register-page',

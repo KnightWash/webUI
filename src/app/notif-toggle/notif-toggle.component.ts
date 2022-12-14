@@ -1,9 +1,10 @@
+// Brian Langejans: TheBguy87
+// Kurt Wietelmann: kwietelmann
+// 12/10/2022
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component';
-import {
-  PushNotificationsService
-} from '../push.notification.service';
+import { PushNotificationsService } from '../push.notification.service';
 
 // All notifications help from https://dzone.com/articles/browser-push-notification-in-angular-5#
 @Component({

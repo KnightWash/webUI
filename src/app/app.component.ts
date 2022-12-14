@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
+// Brian Langejans: TheBguy87
+// Kurt Wietelmann: kwietelmann
+// 12/10/2022
+import { Component } from '@angular/core';
 
 
 @Component({

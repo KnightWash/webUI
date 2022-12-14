@@ -1,5 +1,7 @@
+// Brian Langejans: TheBguy87
+// Kurt Wietelmann: kwietelmann
+// 12/10/2022
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component'
 
 @Component({
@@ -8,11 +10,13 @@ import { Machine } from '../home-page/home-page.component'
   styleUrls: ['./machine-card.component.scss']
 })
 export class MachineCardComponent {
+  // input machine and output event
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
 
+  // called when the notification switch has been toggled
   onChange(newMachine: Machine) {
-    console.log("got to machine card onChange")
+    // emit the new machine with the correct notif switch info
     this.toggleNotifs.emit(newMachine);
   }
 }
