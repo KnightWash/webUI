@@ -15,12 +15,19 @@ import { PushNotificationsService } from '../push.notification.service';
 export class NotifToggleComponent {
   private title: string = 'Browser Push Notifications!';
 
+  // same inputs and outputs as the machine card
+  @Input() machine: Machine;
+  @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
+  newSwitchVal = false;
+
   constructor(private _notificationService: PushNotificationsService) {
       this._notificationService.requestPermission();
   }
 
   ngOnInit() {
+    // set the new switch val to be the current one passed down from the parent homepage component
     this.newSwitchVal = this.machine.notifsOn;
+    // if the new value is true and the machine is off, send the notification and update vals
     if (this.newSwitchVal === true && this.machine.status === "Off") {
       this.notify();
       this.newSwitchVal = false;
@@ -28,22 +35,20 @@ export class NotifToggleComponent {
     }
   }
 
-  @Input() machine: Machine;
-  @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
-  newSwitchVal = false;
   // Help from: https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material
   // when the user toggles the notification slider, subscribe to push notifications
   onChange($event: MatSlideToggleChange) {
     this.toggleNotify();
   }
 
+  // toggle notification vals and emit new machine with those values
   toggleNotify() {
-    //console.log("got to deepest toggle notifs! current value is: " + this.machine.notifsOn);
     this.machine.notifsOn = this.newSwitchVal;
-    //console.log("changing to" + this.machine.notifsOn);
     this.toggleNotifs.emit(this.machine);
   }
 
+  // send push notification - this does not work with the mobile version of chrome, but should in most other places
+  // Help from https://dzone.com/articles/browser-push-notification-in-angular-5#
   notify() {
     let data: Array < any >= [];
     data.push({

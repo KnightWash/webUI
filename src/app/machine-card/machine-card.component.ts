@@ -10,7 +10,7 @@ import { Machine } from '../home-page/home-page.component'
   styleUrls: ['./machine-card.component.scss']
 })
 export class MachineCardComponent {
-  // input machine and output event
+  // input machine and output event for updating notif switch
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
 
