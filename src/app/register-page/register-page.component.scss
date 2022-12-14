@@ -28,3 +28,16 @@
   text-shadow: none;
   transition: 0s;
 }
+
+h1 {
+  font-size: calc(30px + .5vw);
+  margin-top: 2%;
+  font-weight: 500;
+  color: maroon;
+}
+
+.formPrompt {
+  margin-top: 1%;
+  font-size: calc(15px + .3vw);
+  font-weight: 450;
+}
