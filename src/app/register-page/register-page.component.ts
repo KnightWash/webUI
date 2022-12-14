@@ -26,6 +26,13 @@ export class RegisterPageComponent {
     };
     testerList.add({ ...userResponse });
 
+    // TypeScript is fun https://stackoverflow.com/a/12687137
+    const inputs = <HTMLInputElement[]><any>document.getElementsByName('formBox');
+    inputs.forEach(input => {
+      // console.log(input);
+      input.value = '';
+    });
+
   }
 
 }
