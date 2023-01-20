@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,7 @@ import { environment } from 'src/environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NotifToggleComponent } from './notif-toggle/notif-toggle.component';
 import { PushNotificationsService } from './push.notification.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
   port: 8081,
@@ -63,6 +64,12 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [PushNotificationsService],
   bootstrap: [AppComponent]
