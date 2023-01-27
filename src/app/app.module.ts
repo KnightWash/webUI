@@ -29,6 +29,9 @@ import { environment } from 'src/environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NotifToggleComponent } from './notif-toggle/notif-toggle.component';
 import { PushNotificationsService } from './push.notification.service';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminToggleComponent } from './admin-toggle/admin-toggle.component';
+import { AdminCardComponent } from './admin-page/admin-card/admin-card.component';
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
   port: 8081,
@@ -44,7 +47,10 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     RegisterPageComponent,
     HomePageComponent,
     MachineCardComponent,
-    NotifToggleComponent
+    NotifToggleComponent,
+    AdminPageComponent,
+    AdminToggleComponent,
+    AdminCardComponent
   ],
   imports: [
     BrowserModule,

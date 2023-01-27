@@ -8,6 +8,6 @@
     <p *ngIf="machine.status === 'On'" class="on-label">
       Running
     </p>
-    <app-notif-toggle [machine]="machine" (toggleNotifs)="onChange($event)"></app-notif-toggle>
+    <app-admin-toggle></app-admin-toggle>
   </mat-card-content>
 </mat-card>
