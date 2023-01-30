@@ -44,7 +44,7 @@
     <!-- for each machine, check to make sure it is in the correct buildinig and the correct type of machine -->
     <h2 class="machine-header">Washers</h2>
     <ng-container class="card-container" *ngFor="let machine of washers">
-      <app-machine-card [machine]="machine" *ngIf="machine.name.indexOf('tTest') > -1"
+      <app-machine-card [machine]="machine" *ngIf="machine.name.indexOf('/test') > -1"
         (toggleNotifs)="onChange($event)"></app-machine-card>
     </ng-container>
   </div>
