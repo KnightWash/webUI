@@ -48,4 +48,11 @@
         (toggleNotifs)="onChange($event)"></app-machine-card>
     </ng-container>
   </div>
+  <div class="column">
+    <h2 class="machine-header">Dryers</h2>
+    <ng-container class="card-container" *ngFor="let machine of dryers">
+      <app-machine-card [machine]="machine" *ngIf="machine.name.indexOf('/test') > -1"
+        (toggleNotifs)="onChange($event)"></app-machine-card>
+    </ng-container>
+  </div>
 </div>
