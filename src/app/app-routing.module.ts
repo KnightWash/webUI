@@ -6,7 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+  { path: '', component: HomePageComponent },
   { path: 'home-page', component: HomePageComponent },
   { path: 'about-page', component: AboutPageComponent },
   { path: 'register-page', component: RegisterPageComponent },
