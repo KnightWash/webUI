@@ -4,8 +4,9 @@
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": ".",
+  "start_url": "/",
+  "description": "Senior project allowing students to check the status of the dorm washing machines.",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
