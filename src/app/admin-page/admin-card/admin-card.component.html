@@ -8,6 +8,9 @@
     <p *ngIf="machine.status === 'On'" class="on-label">
       Running
     </p>
-    <app-admin-toggle></app-admin-toggle>
+    <p *ngIf="machine.status === 'Unavailable'" class="unavailable-label">
+      Unavailable
+    </p>
+    <app-admin-toggle [machine]="machine" (toggleOffline)="onChange($event)"></app-admin-toggle>
   </mat-card-content>
 </mat-card>

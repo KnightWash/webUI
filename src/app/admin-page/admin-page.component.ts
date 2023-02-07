@@ -5,6 +5,8 @@ import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 export type Machine = {
   name: string;
   status: string;
+  notifsOn: boolean;
+  offlineOn: boolean;
 }
 
 @Component({
@@ -33,6 +35,24 @@ export class AdminPageComponent {
       this.onMessage();
     });
   }
+
+
+  // For when the notification switch changes
+  onChange(newMachine: Machine) {
+    const newSearch = this.machines.find(machine => machine.name === newMachine.name)
+    // if the machine passed here already exists and is a washer,
+    if (newMachine.name?.indexOf("/washer") > -1 && newSearch) {
+      // update the existing washer's notification switch value
+      this.washers[this.washers.indexOf(newSearch)] = newMachine;
+      this.machines[this.machines.indexOf(newSearch)] = newMachine;
+    } else if (newMachine.name?.indexOf("/dryer") > -1 && newSearch) {
+      // same for dryers
+      this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
+      this.machines[this.machines.indexOf(newSearch)] = newMachine;
+    }
+  }
+
+
   ngOnInit(): void { }
 
   ngOnDestroy(): void {
@@ -45,6 +65,8 @@ export class AdminPageComponent {
     const newMachine: Machine = {
       name: this.msg.topic,
       status: this.msg.payload.toString(),
+      notifsOn: false,
+      offlineOn: false
     }
 
     // search the current machine list for the new machine

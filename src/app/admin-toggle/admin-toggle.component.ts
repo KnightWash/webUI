@@ -12,4 +12,23 @@ export class AdminToggleComponent {
   @Output() toggleOffline: EventEmitter<Machine> = new EventEmitter();
   newSwitchVal = false;
 
+  ngOnInit() {
+    this.changeState();
+  }
+
+  onChange($event: MatSlideToggleChange) {
+    this.changeState();
+  }
+
+  changeState(){
+    console.log(this.newSwitchVal);
+    if (this.newSwitchVal === true){
+      this.machine.status = "Unavailable";
+      this.toggleOffline.emit(this.machine);
+      console.log(this.machine.status);
+    } else {
+      console.log(this.machine.status)
+      this.toggleOffline.emit(this.machine);
+    }
+  }
 }

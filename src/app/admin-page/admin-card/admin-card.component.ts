@@ -9,6 +9,10 @@ import { Machine } from '../../admin-page/admin-page.component'
 export class AdminCardComponent {
   // input machine and output event for updating notif switch
   @Input() machine: Machine;
-  @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
+  @Output() toggleOffline: EventEmitter<Machine> = new EventEmitter();
 
+  onChange(newMachine: Machine) {
+    this.toggleOffline.emit(newMachine);
+    console.log(this.machine.status)
+  }
 }
