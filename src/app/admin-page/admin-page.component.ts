@@ -6,7 +6,6 @@ export type Machine = {
   name: string;
   status: string;
   notifsOn: boolean;
-  offlineOn: boolean;
 }
 
 @Component({
