@@ -1,12 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
-
-export type Machine = {
-  name: string;
-  status: string;
-  notifsOn: boolean;
-}
+import { Machine } from '../home-page/home-page.component'
 
 @Component({
   selector: 'app-admin-page',
@@ -36,18 +31,27 @@ export class AdminPageComponent {
   }
 
 
-  // For when the notification switch changes
+  // For when the offline switch changes
   onChange(newMachine: Machine) {
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
     // if the machine passed here already exists and is a washer,
     if (newMachine.name?.indexOf("/washer") > -1 && newSearch) {
-      // update the existing washer's notification switch value
+      // update the existing washer's offline switch value
       this.washers[this.washers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
+      //console.log("ADMIN PAGE status: " + newMachine.status);
+
+      if(newMachine.status === "Unavailable" && newMachine.offlineOn === true){
+        this.updateHome();
+      }
     } else if (newMachine.name?.indexOf("/dryer") > -1 && newSearch) {
       // same for dryers
       this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
+
+      if(newMachine.status === "Unavailable" && newMachine.offlineOn === true){
+        this.updateHome();
+      }
     }
   }
 
@@ -71,14 +75,16 @@ export class AdminPageComponent {
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
     // if the new machine exists, and is a washer,
     if (newMachine.name?.indexOf("/washer") > -1 && newSearch) {
-      // update the notification switch state of the incoming machine to match that of the existing one
+      // update the offline switch state of the incoming machine to match that of the existing one
       //console.log("Existing washer found!");
+      console.log("ADMIN PAGE status 2: " + newMachine.status);
       // Update the current machine to match the new machine from the message
       this.washers[this.washers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
       // same for the dryers
     } else if (newMachine.name?.indexOf("/dryer") > -1 && newSearch) {
       //console.log("Existing dryer found!");
+      console.log("ADMIN PAGE status 2: " + newMachine.status);
       this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
     } else {
@@ -94,5 +100,10 @@ export class AdminPageComponent {
     this.subscription = this._mqttService.observe("/calvin/#").subscribe((message: IMqttMessage) => {
       this.msg = message;
     });
+  }
+
+  public updateHome(): void {
+    console.log("congrats you made it! but...")
+    console.log("more work todo");
   }
 }

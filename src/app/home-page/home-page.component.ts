@@ -9,6 +9,7 @@ export type Machine = {
   name: string;
   status: string;
   notifsOn: boolean;
+  offlineOn: boolean;
 }
 
 @Component({
@@ -67,7 +68,8 @@ export class HomePageComponent {
     const newMachine: Machine =  {
       name: this.msg.topic,
       status: this.msg.payload.toString(),
-      notifsOn: false
+      notifsOn: false,
+      offlineOn: false
     }
 
     // search the current machine list for the new machine

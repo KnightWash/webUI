@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Machine } from '../../admin-page/admin-page.component'
+import { Machine } from '../../home-page/home-page.component'
 
 @Component({
   selector: 'app-admin-card',
@@ -7,12 +7,13 @@ import { Machine } from '../../admin-page/admin-page.component'
   styleUrls: ['./admin-card.component.scss']
 })
 export class AdminCardComponent {
-  // input machine and output event for updating notif switch
+  // input machine and output event for updating offline switch
   @Input() machine: Machine;
   @Output() toggleOffline: EventEmitter<Machine> = new EventEmitter();
 
   onChange(newMachine: Machine) {
     this.toggleOffline.emit(newMachine);
-    console.log(this.machine.status)
+    //console.log("status of machine from card: " + newMachine.status);
+    //console.log("status of toggle from card: " + newMachine.offlineOn);
   }
 }
