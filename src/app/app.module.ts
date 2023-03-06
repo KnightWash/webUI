@@ -33,6 +33,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminToggleComponent } from './admin-toggle/admin-toggle.component';
 import { AdminCardComponent } from './admin-page/admin-card/admin-card.component';
 import { ServiceWorkerModule, SwUpdate, SwPush } from '@angular/service-worker';
+import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
+import { NgChartsModule } from 'ng2-charts';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'test.mosquitto.org',
@@ -52,7 +54,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     NotifToggleComponent,
     AdminPageComponent,
     AdminToggleComponent,
-    AdminCardComponent
+    AdminCardComponent,
+    AnalyticsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerImmediately'
     }),
+    NgChartsModule,
   ],
   providers: [PushNotificationsService],
   bootstrap: [AppComponent]

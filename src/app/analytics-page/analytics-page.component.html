@@ -1,0 +1,24 @@
+<h1>Graph of Busy Times</h1>
+<div>
+  <canvas baseChart class="chart" height="50"
+        [data]="timeData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="chartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+
+<h1>Which Building uses the most power</h1>
+<div>
+  <canvas baseChart class="chart" height="50"
+        [data]="energyData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="chartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+
