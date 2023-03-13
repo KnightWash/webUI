@@ -69,7 +69,8 @@ export class AdminPageComponent {
       name: this.msg.topic,
       status: this.msg.payload.toString(),
       notifsOn: false,
-      offlineOn: false
+      offlineOn: false,
+      timestamp: Number(this.msg.payload.toString().split('|')[1])
     }
 
     // search the current machine list for the new machine

@@ -8,6 +8,7 @@ import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 export type Machine = {
   name: string;
   status: string;
+  timestamp: number;
   notifsOn: boolean;
   offlineOn: boolean;
 }
@@ -67,10 +68,13 @@ export class HomePageComponent {
     // create a new machine out of the message
     const newMachine: Machine =  {
       name: this.msg.topic,
-      status: this.msg.payload.toString(),
+      // status: this.msg.payload.toString(),
+      status: this.msg.payload.toString().split('|')[0],
+      timestamp: Number(this.msg.payload.toString().split('|')[1]),
       notifsOn: false,
       offlineOn: false
     }
+
 
     // search the current machine list for the new machine
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
