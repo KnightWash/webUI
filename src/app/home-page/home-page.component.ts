@@ -68,13 +68,16 @@ export class HomePageComponent {
     // create a new machine out of the message
     const newMachine: Machine =  {
       name: this.msg.topic,
-      // status: this.msg.payload.toString(),
       status: this.msg.payload.toString().split('|')[0],
       timestamp: Number(this.msg.payload.toString().split('|')[1]),
       notifsOn: false,
       offlineOn: false
     }
-
+    let now: Date =  new Date();
+    // number on the right is in seconds (e.g. 11 minutes is 660)
+    if (now.getTime()/1000 - Number(newMachine.timestamp) >= 660 ) {
+      newMachine.status = "Unavailable";
+    }
 
     // search the current machine list for the new machine
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
