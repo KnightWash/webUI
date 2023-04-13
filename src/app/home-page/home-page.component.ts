@@ -8,7 +8,9 @@ import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 export type Machine = {
   name: string;
   status: string;
+  timestamp: number;
   notifsOn: boolean;
+  offlineOn: boolean;
 }
 
 @Component({
@@ -66,9 +68,26 @@ export class HomePageComponent {
     // create a new machine out of the message
     const newMachine: Machine =  {
       name: this.msg.topic,
-      status: this.msg.payload.toString(),
-      notifsOn: false
+      status: this.msg.payload.toString().split('|')[0],
+      timestamp: Number(this.msg.payload.toString().split('|')[1]),
+      notifsOn: false,
+      offlineOn: false
     }
+    let now: Date =  new Date();
+    // number on the right is in seconds (e.g. 11 minutes is 660)
+    if (now.getTime()/1000 - newMachine.timestamp >= 660 ) {
+      // newMachine.status = "Unavailable";
+      // newMachine.status = Number(now.getTime()/1000 - (newMachine.timestamp)).toString();
+      newMachine.status = `$(Number(600)).toString()`;
+    }
+
+    // debugging for calculating time since last post
+    // if (!Number.isNaN(newMachine.timestamp)) { // filter out non-timestamped posts, like our tester bash script
+    //   console.log("====")
+    //   console.log("Now " + now.getTime()/1000)
+    //   console.log("Timestamp " + newMachine.timestamp)
+    //   console.log("Final: " + (now.getTime()/1000 - newMachine.timestamp))
+    // }
 
     // search the current machine list for the new machine
     const newSearch = this.machines.find(machine => machine.name === newMachine.name)
