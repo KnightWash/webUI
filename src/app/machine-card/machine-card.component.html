@@ -2,7 +2,7 @@
 <mat-card [ngStyle]="{'background-color': (machine.status==='Off') ? '#b1ffb1' : ((machine.status==='On') ? '#ffb7b7' : '#D3D3D3')}">
 
   <mat-card-content style="display: flex">
-    <p class="name-label">{{machine.name}}</p>
+    <p class="name-label">{{machine.displayname}}</p>
     <p *ngIf="machine.status === 'Off'" class="off-label">
       Open
     </p>
