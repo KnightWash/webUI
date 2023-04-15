@@ -3,6 +3,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { BehaviorSubject } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import 'firebase/messaging';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,10 @@ import 'firebase/messaging';
 export class MessagingService {
   currentMessage =
     new BehaviorSubject<firebase.messaging.MessagePayload | null>(null);
+  userToken: string | null;
 
   constructor(private angularFireMessaging: AngularFireMessaging) {
-    this.angularFireMessaging.messages.subscribe((message) => {
+      this.angularFireMessaging.messages.subscribe((message) => {
       this.currentMessage.next(message);
     });
   }
@@ -21,6 +23,7 @@ export class MessagingService {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);
+        this.userToken = token;
       },
       (error) => {
         console.error(error);
