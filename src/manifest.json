@@ -1,6 +1,6 @@
 {
-  "name": "KnightWash",
-  "short_name": "KnightWash",
+  "name": "KnightWash-WebUI",
+  "short_name": "KnightWash-WebUI",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "gcm_sender_id": "520468779662",

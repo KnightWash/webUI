@@ -1,94 +1,40 @@
-// Source: https://dzone.com/articles/browser-push-notification-in-angular-5#
-import {
-  Injectable
-} from '@angular/core';
-import {
-  Observable
-} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { BehaviorSubject } from 'rxjs';
+import firebase from 'firebase/compat/app';
+import 'firebase/messaging';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-@Injectable()
-export class PushNotificationsService {
-  public permission: Permission;
+@Injectable({
+  providedIn: 'root',
+})
+export class MessagingService {
+  currentMessage =
+    new BehaviorSubject<firebase.messaging.MessagePayload | null>(null);
+  userToken: string | null;
 
-  constructor() {
-      this.permission = this.isSupported() ? 'default' : 'denied';
+  constructor(private angularFireMessaging: AngularFireMessaging) {
+      this.angularFireMessaging.messages.subscribe((message) => {
+      this.currentMessage.next(message);
+    });
   }
 
-  public isSupported(): boolean {
-      return 'Notification' in window;
-  }
-
-  requestPermission(): void {
-      let self = this;
-      if ('Notification' in window) {
-          Notification.requestPermission(function(status) {
-              return self.permission = status;
-          });
+  requestPermission() {
+    this.angularFireMessaging.requestToken.subscribe(
+      (token) => {
+        console.log(token);
+        this.userToken = token;
+      },
+      (error) => {
+        console.error(error);
       }
+    );
   }
 
-  create(title: string, options ? : PushNotification): any {
-      let self = this;
-      return new Observable(function(obs) {
-          if (!('Notification' in window)) {
-              console.log('Notifications are not available in this environment');
-              obs.complete();
-          }
-          if (self.permission !== 'granted') {
-              console.log("The user hasn't granted you permission to send push notifications");
-              obs.complete();
-          }
-          let _notify = new Notification(title, options);
-          _notify.onshow = function(e) {
-              return obs.next({
-                  notification: _notify,
-                  event: e
-              });
-          };
-          _notify.onclick = function(e) {
-              return obs.next({
-                  notification: _notify,
-                  event: e
-              });
-          };
-          _notify.onerror = function(e) {
-              return obs.error({
-                  notification: _notify,
-                  event: e
-              });
-          };
-          _notify.onclose = function() {
-              return obs.complete();
-          };
-      });
+  receiveMessage() {
+    this.angularFireMessaging.messages.subscribe((message) => {
+      console.log('New message received. ', message);
+      this.currentMessage.next(message);
+    });
   }
-
-  generateNotification(source: Array < any > ): void {
-      let self = this;
-      source.forEach((item) => {
-          let options = {
-              body: item.alertContent,
-              icon: "/assets/knight.png"
-
-          };
-          let notify = self.create(item.title, options).subscribe();
-      })
-  }
-}
-
-export declare type Permission = 'denied' | 'granted' | 'default';
-
-export interface PushNotification {
-  body ? : string;
-  icon ? : string;
-  tag ? : string;
-  data ? : any;
-  renotify ? : boolean;
-  silent ? : boolean;
-  sound ? : string;
-  noscreen ? : boolean;
-  sticky ? : boolean;
-  dir ? : 'auto' | 'ltr' | 'rtl';
-  lang ? : string;
-  vibrate ? : number[];
 }

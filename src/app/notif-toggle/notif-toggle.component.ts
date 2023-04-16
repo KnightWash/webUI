@@ -4,7 +4,10 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component';
-import { PushNotificationsService } from '../push.notification.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MessagingService } from '../push.notification.service';
+import { UserNotifInfo } from '../interfaces';
+//import { PushNotificationsService } from '../push.notification.service';
 
 // All notifications help from https://dzone.com/articles/browser-push-notification-in-angular-5#
 @Component({
@@ -14,22 +17,25 @@ import { PushNotificationsService } from '../push.notification.service';
 })
 export class NotifToggleComponent {
   private title: string = 'Browser Push Notifications!';
+  private userToken: string | undefined;
 
   // same inputs and outputs as the machine card
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
   newSwitchVal = false;
+  private _notificationService: MessagingService;
 
-  constructor(private _notificationService: PushNotificationsService) {
-      this._notificationService.requestPermission();
+  constructor(private db: AngularFirestore,
+              private messagingService: MessagingService) {
   }
 
   ngOnInit() {
+    //this._notificationService.requestPermission();
     // set the new switch val to be the current one passed down from the parent homepage component
     this.newSwitchVal = this.machine.notifsOn;
     // if the new value is true and the machine is off, send the notification and update vals
     if (this.newSwitchVal === true && this.machine.status === "Off") {
-      this.notify();
+      //this.notify();
       this.newSwitchVal = false;
       this.toggleNotify();
     }
@@ -44,19 +50,19 @@ export class NotifToggleComponent {
   // toggle notification vals and emit new machine with those values
   toggleNotify() {
     this.machine.notifsOn = this.newSwitchVal;
-    this.toggleNotifs.emit(this.machine);
-  }
+    if (this.newSwitchVal === true) {
+      this.messagingService.requestPermission();
+      const notifInfo: UserNotifInfo = {
+        machine: this.machine.name,
+        token: this.messagingService.userToken
 
-  // send push notification - this does not work with the mobile version of chrome, but should in most other places
-  // Help from https://dzone.com/articles/browser-push-notification-in-angular-5#
-  notify() {
-    let data: Array < any >= [];
-    data.push({
-        'title': 'Load Complete!',
-        'alertContent': 'Your machine has completed its task, please grab your laundry!'
-    });
-
-    this._notificationService.generateNotification(data);
+      }
+      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).set(notifInfo);
+    }
+    if (this.newSwitchVal === false) {
+      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).delete();
+    }
+    //this.toggleNotifs.emit(this.machine);
   }
 
 }

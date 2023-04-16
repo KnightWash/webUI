@@ -7,6 +7,7 @@ import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 
 export type Machine = {
   name: string;
+  displayname: string;
   status: string;
   timestamp: number;
   notifsOn: boolean;
@@ -68,6 +69,8 @@ export class HomePageComponent {
     // create a new machine out of the message
     const newMachine: Machine =  {
       name: this.msg.topic,
+      // get rid of calvin/location/machinetype/ before name
+      displayname: this.msg.topic.substr(this.msg.topic.lastIndexOf('/')).replace('/',''),
       status: this.msg.payload.toString().split('|')[0],
       timestamp: Number(this.msg.payload.toString().split('|')[1]),
       notifsOn: false,

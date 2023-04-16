@@ -67,6 +67,7 @@ export class AdminPageComponent {
     // create a new machine out of the message
     const newMachine: Machine = {
       name: this.msg.topic,
+      displayname: this.msg.topic.substr(this.msg.topic.lastIndexOf('/')).replace('/',''),
       status: this.msg.payload.toString().split('|')[0],
       notifsOn: false,
       offlineOn: false,
