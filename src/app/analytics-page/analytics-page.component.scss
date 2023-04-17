@@ -1,8 +1,14 @@
 .section-header {
-  font-size: calc(20px + 1vw);
+  font-size: calc(20px + .5vw);
   margin-top: 2%;
   color: maroon;
-  padding-left: 0.5%
+}
+
+h1 {
+  font-size: calc(30px + .5vw);
+  margin-top: 2%;
+  font-weight: 500;
+  color: maroon;
 }
 
 .Graph {

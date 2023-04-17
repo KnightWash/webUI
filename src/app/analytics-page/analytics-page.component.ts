@@ -13,7 +13,7 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 export class AnalyticsPageComponent {
   constructor(private _mqttService: MqttService) {
     //Subscribe to analytics topic
-    this.subscription = this._mqttService.observe('calvin/knightwash/analytics/#').subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe('calvin/knightwash/analytics').subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
@@ -51,8 +51,8 @@ export class AnalyticsPageComponent {
     DataLabelsPlugin
   ];
 
-  //busy time chart data
-  public timeData: ChartData<'bar'> = {
+  //busy time chart data for Bolt
+  public timeDataBolt: ChartData<'bar'> = {
     labels: this.times,
     datasets: [
       {
@@ -64,18 +64,44 @@ export class AnalyticsPageComponent {
     ]
   };
 
-  //building energy chartData
-  public energyData: ChartData<'bar'> = {
-    labels: this.buildings,
+  //busy time chart data for Bolt
+  public timeDataHeyns: ChartData<'bar'> = {
+    labels: this.times,
     datasets: [
       {
-        label: "power usage",
-        data: this.power,
+        label: "# of Users",
+        data: this.data,
         borderColor: 'rgb(255,225,58)',
         backgroundColor: 'rgb(255,225,58)'
       }
     ]
   };
+
+  //busy time chart data for Bolt
+  public timeDataTimmer: ChartData<'bar'> = {
+    labels: this.times,
+    datasets: [
+      {
+        label: "# of Users",
+        data: this.data,
+        borderColor: 'rgb(255,225,58)',
+        backgroundColor: 'rgb(255,225,58)'
+      }
+    ]
+  };
+
+  //building energy chartData FUTURE WORK DID NOT HAVE TIME TO FINISH THIS ON THE DB SIDE
+  // public energyData: ChartData<'bar'> = {
+  //   labels: this.buildings,
+  //   datasets: [
+  //     {
+  //       label: "power usage",
+  //       data: this.power,
+  //       borderColor: 'rgb(255,225,58)',
+  //       backgroundColor: 'rgb(255,225,58)'
+  //     }
+  //   ]
+  // };
 
   //values for mqtt subscription
   private subscription: Subscription;

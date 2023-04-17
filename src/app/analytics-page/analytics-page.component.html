@@ -1,7 +1,10 @@
-<h2 class ="section-header">Graph of Busy Times</h2>
+<header>
+<h1>Busy Times In Last Week</h1>
+</header>
+<h2 class ="section-header">Bolt</h2>
 <div class = "Graph">
   <canvas baseChart class="chart" height="50"
-        [data]="timeData"
+        [data]="timeDataBolt"
         [options]="barChartOptions"
         [plugins]="barChartPlugins"
         [type]="chartType"
@@ -9,11 +12,21 @@
         (chartClick)="chartClicked($event)">
   </canvas>
 </div>
-
-<h2 class = "section-header">Which Building uses the most power</h2>
+<h2 class ="section-header">Heyns</h2>
 <div>
   <canvas baseChart class="chart" height="50"
-        [data]="energyData"
+        [data]="timeDataHeyns"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="chartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+<h2 class ="section-header">Timmer</h2>
+<div>
+  <canvas baseChart class="chart" height="50"
+        [data]="timeDataTimmer"
         [options]="barChartOptions"
         [plugins]="barChartPlugins"
         [type]="chartType"
