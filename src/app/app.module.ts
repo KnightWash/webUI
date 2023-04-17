@@ -15,7 +15,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
+import {MatSelectModule} from '@angular/material/select';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatFormField } from "@angular/material/form-field";
 
 
 import { AppComponent } from './app.component';
@@ -66,6 +68,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatSelectModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,

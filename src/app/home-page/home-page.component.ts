@@ -4,6 +4,9 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
+import {MatSelectModule} from '@angular/material/select';
+import { FormControl } from '@angular/forms';
+
 
 export type Machine = {
   name: string;
@@ -26,6 +29,10 @@ export class HomePageComponent {
   public washers: Machine[] = [];
   public dryers: Machine[] = [];
 
+  selectedHall: string = "bolt";
+
+  selectedHallControl = new FormControl(this.selectedHall);
+
   // values for mqtt subscription
   // MQTT help from https://medium.com/@anant.lalchandani/dead-simple-mqtt-example-over-websockets-in-angular-b9fd5ff17b8e
   private subscription: Subscription;
@@ -36,7 +43,7 @@ export class HomePageComponent {
 
   constructor(private _mqttService: MqttService) {
     // Subscribe to all mqtt calvin topics and receive messages from them
-    this.subscription = this._mqttService.observe('calvin/#').subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe(`calvin/${this.selectedHall}/#`).subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
@@ -55,6 +62,19 @@ export class HomePageComponent {
       this.dryers[this.dryers.indexOf(newSearch)] = newMachine;
       this.machines[this.machines.indexOf(newSearch)] = newMachine;
     }
+  }
+
+  onHallChange(newHall: any) {
+    this.selectedHall = newHall.value;
+    this.machines = [];
+    this.washers = [];
+    this.dryers = [];
+    this.subscription.unsubscribe();
+    this.subscription = this._mqttService.observe(`calvin/${this.selectedHall}/#`).subscribe((message: IMqttMessage) => {
+      this.msg = message;
+      this.onMessage();
+    });
+
   }
 
   ngOnInit(): void { }
@@ -117,8 +137,8 @@ export class HomePageComponent {
   }
 
   // subscribe to a new mqtt topic
-  public subscribeNewTopic(): void {
-    this.subscription = this._mqttService.observe("/calvin/#").subscribe((message: IMqttMessage) => {
+  public subscribeNewTopic(hall: string): void {
+    this.subscription = this._mqttService.observe(`/calvin/${hall}`).subscribe((message: IMqttMessage) => {
       this.msg = message;
     });
   }
