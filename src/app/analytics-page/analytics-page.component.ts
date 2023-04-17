@@ -13,7 +13,7 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 export class AnalyticsPageComponent {
   constructor(private _mqttService: MqttService) {
     //Subscribe to analytics topic
-    this.subscription = this._mqttService.observe('calvin/knightwash/#').subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe('calvin/knightwash/analytics/#').subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
