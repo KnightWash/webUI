@@ -1,21 +1,66 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
 <!-- Toolbar navigation help from: https://www.techiediaries.com/angular-material-navigation-toolbar-sidenav/ -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<mat-toolbar class="custom-toolbar">
-  <mat-toolbar-row>
-    <img src="assets/knight.png" class="knight-logo" />
-    <h1>KnightWash</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<mat-toolbar>
+  <mat-toolbar-row class="mobile-toolbar">
+    <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon class="menu-icon">menu</mat-icon>
+    </button>
+    <div class="logo-and-text">
+      <img src="assets/knight.png" class="knight-logo" />
+      <h1>KnightWash</h1>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="desktop-toolbar">
+    <div class="logo-and-text2">
+      <img src="assets/knight.png" class="knight-logo" />
+      <h1 class="logo-text">KnightWash</h1>
+    </div>
+
     <span class="menu-spacer"></span>
-    <div>
-      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active"> Home </a>
-      <a mat-button [routerLink]="'/about-page'" routerLinkActive="active"> About </a>
+    <div class="options">
+      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active" class="header-button">
+        Home
+      </a>
+      <a mat-button [routerLink]="'/about-page'" routerLinkActive="active" class="header-button">
+        About
+      </a>
       <!-- <a mat-button [routerLink]="'/admin-page'" routerLinkActive="active"> Admin </a> -->
-      <a mat-button [routerLink]="'/register-page'" routerLinkActive="active"> Send Feedback </a>
-      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active"> Analytics </a>
-
-
+      <a mat-button [routerLink]="'/register-page'" routerLinkActive="active" class="header-button">
+        Send Feedback
+      </a>
+      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active" class="header-button">
+        Analytics
+      </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-drawer #sidenav mode="side" (click)="sidenav.close()" (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
+  <ul>
+    <li>
+      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active">
+        Home
+      </a>
+    </li>
+    <li>
+      <a mat-button [routerLink]="'/about-page'" routerLinkActive="active">
+        About
+      </a>
+    </li>
+    <li>
+      <a mat-button [routerLink]="'/register-page'" routerLinkActive="active">
+        Send Feedback
+      </a>
+    </li>
+    <li>
+      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active">
+        Analytics
+      </a>
+    </li>
+  </ul>
+</mat-drawer>
+
+<div class="literally-everything-else" #sidenav (click)="sidenav.close()" (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
+  <router-outlet></router-outlet>
+</div>

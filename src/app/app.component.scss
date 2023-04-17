@@ -1,12 +1,102 @@
-.custom-toolbar {
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 998;
   background-color: #8c2131;
   color: white;
-  width: 100%;
   overflow-x: hidden;
+  width: 100vw;
+  // border: 3px solid green;
+}
+
+// make sure nothing's covered up by the toolbar
+.literally-everything-else {
+  transform: translateY(70px);
 }
 
 .knight-logo {
   background-color: transparent;
   width: 36px;
   height: 36px;
+  float: left;
+}
+
+mat-drawer {
+  width: 200px;
+  position: fixed;
+  top: 64px; /* adjust this value to match the height of your header */
+  bottom: 0;
+  z-index: 997;
+}
+
+
+ul {
+  list-style: none;
+}
+
+.menu-icon {
+  transform: scale(1.5);
+}
+
+.menu-button {
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.header-button {
+  font-size: 20px;
+}
+
+.logo-text {
+  font-size: 25px;
+}
+
+// mobile view
+@media (max-width: 699px) {
+  .custom-toolbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1 px solid pink;
+    min-width: 100vw;
+    // width: 100vw;
+  }
+
+  .menu-button{
+    margin-right: auto;
+  }
+
+  .desktop-toolbar {
+    display: none;
+  }
+  .logo-and-text {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5%;
+    // margin: auto;
+    // position: absolute;
+    // left: 50%;
+    // right: 50%;
+  }
+}
+
+// desktop view
+@media (min-width: 700px) {
+  .menu-button {
+    display: none;
+  }
+  .logo-and-text {
+    display: none;
+  }
+
+  .options {
+    margin: auto
+  }
+
+  .mobile-toolbar {
+    display: none;
+  }
+
 }

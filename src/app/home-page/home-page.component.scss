@@ -3,15 +3,16 @@
   display: flex;
   flex: 1;
   border-width: 2px;
-  border-color: black;
+  // border-color: black;
 }
 
 .column {
   float: left;
-  width: 30%;
+  // width: 30%;
   margin-right: 5%;
-  min-width: 400px;
+  min-width: 380px;
   max-width: 500px;
+  // border: 1px solid green;
 }
 
 .row:after {
@@ -20,13 +21,15 @@
   clear: both;
 }
 
-.building-header {
-  font-size: calc(30px + .5vw);
+.building-selector {
+  font-size: calc(15px + .5vw);
   margin-top: 2%;
+  margin-left: 1%;
   font-weight: 500;
   color: maroon;
 }
 
 .machine-header {
-  font-size: calc(15px + .3vw);
+  font-size: calc(20px + .3vw);
+  margin-left: 5%;
 }
