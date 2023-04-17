@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts'
-
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
@@ -14,7 +13,7 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 export class AnalyticsPageComponent {
   constructor(private _mqttService: MqttService) {
     //Subscribe to analytics topic
-    this.subscription = this._mqttService.observe('calvin/analytics/#').subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe('calvin/knightwash/#').subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
@@ -22,9 +21,10 @@ export class AnalyticsPageComponent {
 
   @ViewChildren(BaseChartDirective) chart: BaseChartDirective | undefined;
   public data = [10,3,3,4,5,0,30,55,20,0,0,0,0,0,0,0,45,56];
-  public times = [ '12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'];
+  public times = [ '12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
   public power = [];
-  public buildings = ['beta', 'gamma', 'bolt'];
+  public buildings = ['Bolt', 'Heyns', 'Timmer'];
+  public mqttJson: any;
 
   //setup for barcharts
   //got structure from https://valor-software.com/ng2-charts/#BarChart
@@ -55,7 +55,12 @@ export class AnalyticsPageComponent {
   public timeData: ChartData<'bar'> = {
     labels: this.times,
     datasets: [
-      { data: this.data }
+      {
+        label: "# of Users",
+        data: this.data,
+        borderColor: 'rgb(255,225,58)',
+        backgroundColor: 'rgb(255,225,58)'
+      }
     ]
   };
 
@@ -63,7 +68,12 @@ export class AnalyticsPageComponent {
   public energyData: ChartData<'bar'> = {
     labels: this.buildings,
     datasets: [
-      { data: this.power }
+      {
+        label: "power usage",
+        data: this.power,
+        borderColor: 'rgb(255,225,58)',
+        backgroundColor: 'rgb(255,225,58)'
+      }
     ]
   };
 
@@ -78,14 +88,13 @@ export class AnalyticsPageComponent {
 
   ngOnDestroy(): void {
     //unsubscribe from all topic
-    this.
-    subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
   public onMessage(): void {
     //log message here
-    console.log('log message here');
+    console.log("message received");
+    console.log(this.msg.payload.toString());
     //push data to data array
-    //call function to make graph
   }
 
   // events
