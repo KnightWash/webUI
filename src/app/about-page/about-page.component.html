@@ -1,64 +1,81 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
 <header class="about-header">
-  <h1 class="about-header-text">About KnightWash</h1>
+  <h1 class="about-header-text montserrat-600">About KnightWash</h1>
 </header>
 
 <body>
-  <h2 class="section-header"> Vision </h2>
-  <div class="about-text">
-    It's easy to lose track of how long your laundry's been running - and sometimes the estimated time remaining on the
-    machines is even <i>wrong</i>. Additionally, all machines may be in use, causing students to take extra trips to the
-    laundry room just to see if a machine is available.
-    <p></p>
-    Our solution: A monitoring setup that connects to the laundry machines in university dorms in order to keep track of
-    machines being used, along with their current status. Students will be able to access this information through a
-    mobile app that displays
-    simple
-    information about time remaining for all machines and their availability.
-  </div>
+  <div class="container">
+    <h2 class="section-header montserrat-600">Vision</h2>
+    <div class="about-text">
+      It's easy to lose track of how long your laundry's been running - and
+      sometimes the estimated time remaining on the machines is even
+      <i>wrong</i>. Additionally, all machines may be in use, causing students
+      to take extra trips to the laundry room just to see if a machine is
+      available.
+      <p></p>
+      Our solution: A monitoring setup that connects to the laundry machines in
+      university dorms in order to keep track of machines being used, along with
+      their current status. Students will be able to access this information
+      through a mobile app that displays simple information about time remaining
+      for all machines and their availability.
+    </div>
 
-  <h2 class="section-header">Team</h2>
-  <div class="about-text">
-    <ul>
-      <li>Kurt Wietelmann</li>
-      <li>Brian Langejans</li>
-      <li>Aayam Shrestha</li>
-      <li>Eric Klomp</li>
-    </ul>
-  </div>
+    <h2 class="section-header montserrat-600">Team</h2>
+    <div class="about-text">
+      <ul>
+        <li>Kurt Wietelmann</li>
+        <li>Brian Langejans</li>
+        <li>Aayam Shrestha</li>
+        <li>Eric Klomp</li>
+      </ul>
+    </div>
 
-  <h2 class="section-header">Advisor</h2>
-  <div class="about-text">
-    <h1>Derek Schuurman</h1>
-  </div>
+    <h2 class="section-header montserrat-600">Advisor</h2>
+    <div class="about-text">
+      <h1>Derek Schuurman</h1>
+    </div>
 
-  <h2 class="section-header">Code</h2>
-  <div class="about-text">
-    Source code for some or all components of our project will be made available at
-    <a href="https://github.com/orgs/knightwash/repositories">our GitHub organization</a> - this will also include
-    installation instructions, as appropriate/needed.
-  </div>
+    <h2 class="section-header montserrat-600">Code</h2>
+    <div class="about-text">
+      Source code for some or all components of our project will be made
+      available at
+      <a href="https://github.com/orgs/knightwash/repositories"
+        >our GitHub organization</a
+      >
+      - this will also include installation instructions, as appropriate/needed.
+    </div>
 
-  <h2 class="section-header">Report</h2>
-  <div class="about-text">
-    For more information, see our <a href="https://docs.google.com/document/d/1EfbD14Db-ndb3GZ0Pjoxj3KvhE7ty8LqRPuYlotyvtc/edit?usp=drivesdk">Project Proposal</a>
-    <br><br>
-    The setup so far is as follows:
-    <ul>
-      <li>
-        TP-Link Kasa Smart Wi-Fi Plugs connected to the WiFi in the residence halls (not eduroam!) - specifically,
-        models that support the "emeter" power monitoring system with <a
-          href="https://python-kasa.readthedocs.io/en/latest/">python-kasa</a>
-      </li>
-      <li>
-        One or more Raspberry Pis (or other dedicated server hardware) also connected to the residential LAN,
-        which will be instructed to connect to the smart plugs and send their data to an MQTT server.
-      </li>
-      <li>
-        A mobile app that fetches the data posted by the Raspberry Pis from the previously mentioned MQTT server
-      </li>
-    </ul>
-    <a href="https://computing.calvin.edu/">Calvin Computer Science Department</a>
+    <h2 class="section-header montserrat-600">Report</h2>
+    <div class="about-text">
+      For more information, see our
+      <a
+        href="https://docs.google.com/document/d/1EfbD14Db-ndb3GZ0Pjoxj3KvhE7ty8LqRPuYlotyvtc/edit?usp=drivesdk"
+        >Project Proposal</a
+      >
+      <br /><br />
+      The setup so far is as follows:
+      <ul>
+        <li>
+          TP-Link Kasa Smart Wi-Fi Plugs connected to the WiFi in the residence
+          halls (not eduroam!) - specifically, models that support the "emeter"
+          power monitoring system with
+          <a href="https://python-kasa.readthedocs.io/en/latest/"
+            >python-kasa</a
+          >
+        </li>
+        <li>
+          One or more Raspberry Pis (or other dedicated server hardware) also
+          connected to the residential LAN, which will be instructed to connect
+          to the smart plugs and send their data to an MQTT server.
+        </li>
+        <li>
+          A mobile app that fetches the data posted by the Raspberry Pis from
+          the previously mentioned MQTT server
+        </li>
+      </ul>
+      <a href="https://computing.calvin.edu/"
+        >Calvin Computer Science Department</a
+      >
+    </div>
   </div>
-
 </body>

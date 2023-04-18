@@ -1,13 +1,91 @@
+.montserrat-500 {
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.montserrat-600 {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.montserrat-700 {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.inter-500 {
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.inter-600 {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.inter-700 {
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.cabin-500 {
+  font-family: "Cabin";
+  font-weight: 500;
+}
+
+.cabin-600 {
+  font-family: "Cabin";
+  font-weight: 600;
+}
+
+.cabin-700 {
+  font-family: "Cabin";
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 5vh;
+}
+
+header {
+  margin: 0 auto;
+  border-bottom: 4px solid #ffe13a;
+}
+
+.form-header {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.form > div:not(:first-of-type) {
+  padding-top: 5vh;
+}
+
+.form-input {
+  height: 5vh;
+  border: 1px solid gray;
+  border-radius: 7px;
+  padding: 3% 5%;
+}
+
 .submit-button {
+  margin: 5vh auto 0 auto;
+  max-width: 300px;
   background: #8c2131;
-  color: #f3cd00;
+  color: #f2f2f2;
   border: 2px solid #eee;
   border-radius: 40px;
   box-shadow: 5px 5px 5px #eee;
   text-shadow: none;
-  padding: 1vw;
+  padding: 3vh 20px;
+  font-size: 1.2rem;
   -webkit-transition-duration: 0.4s; //for Safari, apparently?
   transition-duration: 1s;
+  margin-top: 3vh;
 }
 
 // invert submit button colors on hover
@@ -32,14 +110,30 @@
 }
 
 h1 {
-  font-size: calc(30px + .5vw);
+  font-size: calc(30px + 0.5vw);
   margin-top: 2%;
   font-weight: 500;
   color: maroon;
+  padding-top: 3vh;
 }
 
 .formPrompt {
   margin-top: 1%;
-  font-size: calc(15px + .3vw);
+  font-size: calc(15px + 0.3vw);
   font-weight: 450;
+}
+
+.form-textarea {
+  height: 25vh;
+}
+
+@media screen and (min-width: 699px) {
+  .form {
+    width: 680px;
+    margin: 0 auto;
+  }
+
+  .form-header {
+    width: 680px;
+  }
 }

@@ -1,17 +1,28 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
-<mat-card [ngStyle]="{'background-color': (machine.status==='Off') ? '#b1ffb1' : ((machine.status==='On') ? '#ffb7b7' : '#D3D3D3')}">
-
+<mat-card
+  class="machine-card"
+  [ngStyle]="{
+    'background-color':
+      machine.status === 'Off'
+        ? '#b1ffb1'
+        : machine.status === 'On'
+        ? '#ffb7b7'
+        : '#D3D3D3'
+  }"
+>
   <mat-card-content style="display: flex">
-    <p class="name-label">{{machine.displayname}}</p>
-    <p *ngIf="machine.status === 'Off'" class="off-label">
-      Open
-    </p>
-    <p *ngIf="machine.status === 'On'" class="on-label">
-      Running
-    </p>
-    <p *ngIf="machine.status === 'Unavailable'" class="unavailable-label">
+    <p class="name-label inter-400 larger-font">{{ machine.displayname }}</p>
+    <p *ngIf="machine.status === 'Off'" class="off-label inter-400">Open</p>
+    <p *ngIf="machine.status === 'On'" class="on-label inter-400">Running</p>
+    <p
+      *ngIf="machine.status === 'Unavailable'"
+      class="unavailable-label inter-500"
+    >
       Unavailable
     </p>
-    <app-notif-toggle [machine]="machine" (toggleNotifs)="onChange($event)"></app-notif-toggle>
+    <app-notif-toggle
+      [machine]="machine"
+      (toggleNotifs)="onChange($event)"
+    ></app-notif-toggle>
   </mat-card-content>
 </mat-card>
