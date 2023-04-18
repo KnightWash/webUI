@@ -1,3 +1,58 @@
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.montserrat-500 {
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.montserrat-600 {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.montserrat-700 {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.inter-500 {
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.inter-600 {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.inter-700 {
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.cabin-500 {
+  font-family: "Cabin";
+  font-weight: 500;
+}
+
+.cabin-600 {
+  font-family: "Cabin";
+  font-weight: 600;
+}
+
+.cabin-700 {
+  font-family: "Cabin";
+  font-weight: 700;
+}
+
+.bigger-font {
+  font-size: 3rem;
+}
+
 mat-toolbar {
   position: fixed;
   top: 0;
@@ -40,7 +95,7 @@ mat-drawer {
 
 .sidenav * {
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.2rem;
 }
 
 .sidenav > li {

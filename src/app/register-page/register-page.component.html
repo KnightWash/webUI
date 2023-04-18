@@ -1,13 +1,19 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
 <header class="form-header">
-  <h1>Feedback Form</h1>
+  <h1 class="montserrat-600">Feedback Form</h1>
 </header>
 
 <body>
   <div class="form">
-    <div class="email">Enter your email:</div>
+    <div
+      class="email montserrat-500"
+      style="font-size: 1.2rem; padding-bottom: 8px"
+    >
+      Enter your email:
+    </div>
     <input
-      class="form-input"
+      class="form-input montserrat-500"
+      style="font-size: 1.1rem"
       name="formBox"
       [(ngModel)]="email"
       type="text"
@@ -21,9 +27,15 @@
       type="text"
       placeholder="iPhone, Android, PC?"
     /> -->
-    <div class="feedback">Tell us what you think!</div>
+    <div
+      class="feedback montserrat-500"
+      style="font-size: 1.3rem; padding-bottom: 8px"
+    >
+      Tell us what you think!
+    </div>
     <textarea
-      class="form-input form-textarea"
+      class="form-input form-textarea montserrat-500"
+      style="font-size: 1.1rem"
       name="formBox"
       [(ngModel)]="availability"
       placeholder="Give us ideas, critiques, complaints, etc."
@@ -36,7 +48,7 @@
     <input
       (click)="sendMessage()"
       id="submit-button"
-      class="submit-button"
+      class="submit-button montserrat-500"
       type="submit"
       value="Submit Feedback"
     />

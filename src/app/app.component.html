@@ -17,7 +17,7 @@
   <mat-toolbar-row class="desktop-toolbar">
     <div class="logo-and-text2">
       <img src="assets/knight.png" class="knight-logo" />
-      <h1 class="logo-text">KnightWash</h1>
+      <h1 class="logo-text montserrat-500">KnightWash</h1>
     </div>
 
     <span class="menu-spacer"></span>
@@ -26,7 +26,7 @@
         mat-button
         [routerLink]="'/home-page'"
         routerLinkActive="active"
-        class="header-button"
+        class="header-button cabin-500"
       >
         Home
       </a>
@@ -34,7 +34,7 @@
         mat-button
         [routerLink]="'/analytics-page'"
         routerLinkActive="active"
-        class="header-button"
+        class="header-button cabin-500"
       >
         Analytics
       </a>
@@ -42,7 +42,7 @@
         mat-button
         [routerLink]="'/about-page'"
         routerLinkActive="active"
-        class="header-button"
+        class="header-button cabin-500"
       >
         About
       </a>
@@ -51,7 +51,7 @@
         mat-button
         [routerLink]="'/register-page'"
         routerLinkActive="active"
-        class="header-button"
+        class="header-button cabin-500"
       >
         Send Feedback
       </a>
@@ -68,22 +68,42 @@
 >
   <ul class="sidenav">
     <li>
-      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active">
+      <a
+        mat-button
+        [routerLink]="'/home-page'"
+        routerLinkActive="active"
+        class="montserrat-600"
+      >
         Home
       </a>
     </li>
     <li>
-      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active">
+      <a
+        mat-button
+        [routerLink]="'/analytics-page'"
+        routerLinkActive="active"
+        class="montserrat-600"
+      >
         Analytics
       </a>
     </li>
     <li>
-      <a mat-button [routerLink]="'/about-page'" routerLinkActive="active">
+      <a
+        mat-button
+        [routerLink]="'/about-page'"
+        routerLinkActive="active"
+        class="montserrat-600"
+      >
         About
       </a>
     </li>
     <li>
-      <a mat-button [routerLink]="'/register-page'" routerLinkActive="active">
+      <a
+        mat-button
+        [routerLink]="'/register-page'"
+        routerLinkActive="active"
+        class="montserrat-600"
+      >
         Send Feedback
       </a>
     </li>

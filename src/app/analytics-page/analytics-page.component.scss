@@ -1,5 +1,50 @@
+.montserrat-500 {
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.montserrat-600 {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.montserrat-700 {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.inter-500 {
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.inter-600 {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.inter-700 {
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.cabin-500 {
+  font-family: "Cabin";
+  font-weight: 500;
+}
+
+.cabin-600 {
+  font-family: "Cabin";
+  font-weight: 600;
+}
+
+.cabin-700 {
+  font-family: "Cabin";
+  font-weight: 700;
+}
+
 .section-header {
-  font-size: calc(20px + .5vw);
+  font-size: calc(20px + 0.5vw);
   margin-top: 2%;
   color: maroon;
 }
@@ -8,29 +53,32 @@
   margin-top: 5vh;
 }
 
-header{
+header {
   width: 800px;
   margin: 0 auto;
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
+  border-bottom: 4px solid #ffe13a;
 }
 
 h1 {
-  font-size: calc(30px + .5vw);
+  font-size: calc(30px + 0.5vw);
   margin-top: 2%;
   font-weight: 500;
   color: maroon;
+  padding-left: 2vw;
+  padding-top: 2vw;
 }
 
-.parent-container{
+.parent-container {
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.chart{
+.chart {
   width: 800px;
   height: 300px;
 }
@@ -46,11 +94,11 @@ h1 {
 }
 
 @media screen and (max-width: 699px) {
-  header{
+  header {
     width: 100%;
   }
 
-  .chart-container{
+  .chart-container {
     width: 100%;
   }
 }
