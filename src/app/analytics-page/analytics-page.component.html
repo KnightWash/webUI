@@ -1,37 +1,17 @@
 <header>
 <h1>Busy Times In Last Week</h1>
 </header>
-<h2 class ="section-header">Bolt</h2>
-<div class = "Graph">
-  <canvas baseChart class="chart" height="50"
-        [data]="timeDataBolt"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [type]="chartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-  </canvas>
+<div class="parent-container">
+  <h2 class ="section-header">Bolt</h2>
+  <div class = "chart-container">
+    <canvas id="timeDataBolt" class="chart" style= "height: 300px" ></canvas>
+  </div>
+  <h2 class ="section-header">Heyns</h2>
+  <div class="chart-container">
+    <canvas id="timeDataHeyns" class="chart" style= "height: 300px" ></canvas>
+  </div>
+  <h2 class ="section-header">Timmer</h2>
+  <div class="chart-container">
+    <canvas id="timeDataTimmer" class="chart" style= "height: 300px" ></canvas>
+  </div>
 </div>
-<h2 class ="section-header">Heyns</h2>
-<div>
-  <canvas baseChart class="chart" height="50"
-        [data]="timeDataHeyns"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [type]="chartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-  </canvas>
-</div>
-<h2 class ="section-header">Timmer</h2>
-<div>
-  <canvas baseChart class="chart" height="50"
-        [data]="timeDataTimmer"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [type]="chartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-  </canvas>
-</div>
-

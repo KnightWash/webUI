@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy, ViewChildren } fro
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import Chart from 'chart.js/auto'
 import { BaseChartDirective } from 'ng2-charts'
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
@@ -13,95 +14,26 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 export class AnalyticsPageComponent {
   constructor(private _mqttService: MqttService) {
     //Subscribe to analytics topic
-    this.subscription = this._mqttService.observe('calvin/knightwash/analytics').subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe('calvin/knightwash/analytics/#').subscribe((message: IMqttMessage) => {
       this.msg = message;
       this.onMessage();
     });
   }
 
-  @ViewChildren(BaseChartDirective) chart: BaseChartDirective | undefined;
-  public data = [10,3,3,4,5,0,30,55,20,0,0,0,0,0,0,0,45,56];
-  public times = [ '12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
-  public power = [];
-  public buildings = ['Bolt', 'Heyns', 'Timmer'];
+  public boltData : any[]=[];
+  public boltTimes: any[]=[];
+  public heynsData : any[]=[];
+  public heynsTimes: any[]=[];
+  public timmerData : any[]=[];
+  public timmerTimes: any[]=[];
   public mqttJson: any;
-
-  //setup for barcharts
-  //got structure from https://valor-software.com/ng2-charts/#BarChart
-  public barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: {
-      x: {},
-      y: {}
-    },
-    plugins: {
-      legend: {
-        display: true,
-      },
-      datalabels: {
-        anchor: 'end',
-        align: 'end'
-      }
-    }
-  };
-  //select what type of chart is being created
-  public chartType: ChartType = 'bar';
-  public barChartPlugins = [
-    DataLabelsPlugin
-  ];
-
-  //busy time chart data for Bolt
-  public timeDataBolt: ChartData<'bar'> = {
-    labels: this.times,
-    datasets: [
-      {
-        label: "# of Users",
-        data: this.data,
-        borderColor: 'rgb(255,225,58)',
-        backgroundColor: 'rgb(255,225,58)'
-      }
-    ]
-  };
-
-  //busy time chart data for Bolt
-  public timeDataHeyns: ChartData<'bar'> = {
-    labels: this.times,
-    datasets: [
-      {
-        label: "# of Users",
-        data: this.data,
-        borderColor: 'rgb(255,225,58)',
-        backgroundColor: 'rgb(255,225,58)'
-      }
-    ]
-  };
-
-  //busy time chart data for Bolt
-  public timeDataTimmer: ChartData<'bar'> = {
-    labels: this.times,
-    datasets: [
-      {
-        label: "# of Users",
-        data: this.data,
-        borderColor: 'rgb(255,225,58)',
-        backgroundColor: 'rgb(255,225,58)'
-      }
-    ]
-  };
-
-  //building energy chartData FUTURE WORK DID NOT HAVE TIME TO FINISH THIS ON THE DB SIDE
-  // public energyData: ChartData<'bar'> = {
-  //   labels: this.buildings,
-  //   datasets: [
-  //     {
-  //       label: "power usage",
-  //       data: this.power,
-  //       borderColor: 'rgb(255,225,58)',
-  //       backgroundColor: 'rgb(255,225,58)'
-  //     }
-  //   ]
-  // };
+  public topic: string;
+  public testx: any[] = [];
+  public testy: any[] = [];
+  public test: Chart;
+  public timeDataBolt: Chart;
+  public timeDataHeyns: Chart;
+  public timeDataTimmer: Chart;
 
   //values for mqtt subscription
   private subscription: Subscription;
@@ -110,7 +42,68 @@ export class AnalyticsPageComponent {
   isConnected: boolean = false;
   @ViewChild('msglog', {static: true }) msglog: ElementRef;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //initalize Bolt Chart
+    this.timeDataBolt = new Chart('timeDataBolt', {
+      type: 'bar',
+      data: {
+        labels: this.boltTimes,
+        datasets: [{
+          label: '# of Users',
+          data: this.boltData,
+          backgroundColor: 'rgb(255,225,58)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero:true
+          }
+        }
+      }
+    });
+    //initalize Heyns Chart
+    this.timeDataHeyns = new Chart('timeDataHeyns', {
+      type: 'bar',
+      data: {
+        labels: this.heynsTimes,
+        datasets: [{
+          label: '# of Users',
+          data: this.heynsData,
+          backgroundColor: 'rgb(255,225,58)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero:true
+          }
+        }
+      }
+    });
+    //initalize Timmer Chart
+    this.timeDataTimmer = new Chart('timeDataTimmer', {
+      type: 'bar',
+      data: {
+        labels: this.heynsTimes,
+        datasets: [{
+          label: '# of Users',
+          data: this.heynsData,
+          backgroundColor: 'rgb(255,225,58)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero:true
+          }
+        }
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     //unsubscribe from all topic
@@ -118,18 +111,84 @@ export class AnalyticsPageComponent {
   }
   public onMessage(): void {
     //log message here
-    console.log("message received");
-    console.log(this.msg.payload.toString());
+    //console.log(this.msg.topic.substr(this.msg.topic.lastIndexOf('/')));
+    //getting the topic name to determine which graph to update
+    this.topic = this.msg.topic.substr(this.msg.topic.lastIndexOf('/'));
+    // console.log("Test x data: ", this.testx)
+    // console.log("Test y data: ", this.testy)
+
+    if(this.topic === "/bolt"){
+      this.resetGraph(this.timeDataBolt, this.boltData, this.boltTimes);
+      //receive and parse json from mqtt message
+      this.mqttJson = this.msg.payload.toString();
+      //console.log(this.msg.payload.toString());
+      let jsonObject = JSON.parse(this.mqttJson)
+
+      //push the new data to array for graphs
+      for(const data of jsonObject) {
+        if (data && typeof data === 'object' && Object.prototype.hasOwnProperty.call(data, 'hour') && Object.prototype.hasOwnProperty.call(data, 'count')) {
+          //console.log(data.hour);
+          this.boltTimes.push(data.hour);
+          this.boltData.push(data.count);
+        }
+      }
+      //console.log("bolt data:", this.boltData)
+      this.updateGraph(this.timeDataBolt, this.boltData, this.boltTimes)
+    }
+    if(this.topic === "/heyns"){
+      this.resetGraph(this.timeDataHeyns, this.heynsData, this.heynsTimes);
+      //receive and parse json from mqtt message
+      this.mqttJson = this.msg.payload.toString();
+      //console.log(this.msg.payload.toString());
+      let jsonObject = JSON.parse(this.mqttJson)
+
+    //push the new data to array for graphs
+      for(const data of jsonObject) {
+        if (data && typeof data === 'object' && Object.prototype.hasOwnProperty.call(data, 'hour') && Object.prototype.hasOwnProperty.call(data, 'count')) {
+          //console.log(data.hour);
+          this.heynsTimes.push(data.hour);
+          this.heynsData.push(data.count);
+        }
+      }
+      //console.log("bolt data:", this.boltData)
+      this.updateGraph(this.timeDataHeyns, this.heynsData, this.heynsTimes)
+    }
+    if(this.topic === "/timmer"){
+      this.resetGraph(this.timeDataTimmer, this.timmerData, this.timmerTimes);
+      //receive and parse json from mqtt message
+      this.mqttJson = this.msg.payload.toString();
+      //console.log(this.msg.payload.toString());
+      let jsonObject = JSON.parse(this.mqttJson)
+
+      //push the new data to array for graphs
+      for(const data of jsonObject) {
+        if (data && typeof data === 'object' && Object.prototype.hasOwnProperty.call(data, 'hour') && Object.prototype.hasOwnProperty.call(data, 'count')) {
+          //console.log(data.hour);
+          this.timmerTimes.push(data.hour);
+          this.timmerData.push(data.count);
+        }
+      }
+      //console.log("bolt data:", this.boltData)
+      this.updateGraph(this.timeDataTimmer, this.timmerData, this.timmerTimes)
+    }
     //push data to data array
   }
 
-  // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+  //reset the arrays for the charts and the graph so it starts fresh every week
+  public resetGraph(Chart:Chart, data: any[], labels: any[] ){
+    data.length = 0;
+    labels.length = 0;
+    //console.log("reset graph: ", data)
+    //console.log("reset graph: ", labels)
+    Chart.data.datasets[0].data = data;
+    Chart.data.labels = labels;
+    Chart.update();
   }
 
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+  //update the graph based on json data coming from mqtt message
+  public updateGraph(Chart:Chart, data: any[], labels: any[] ){
+    Chart.data.datasets[0].data = data;
+    Chart.data.labels = labels;
+    Chart.update();
   }
-
 }
