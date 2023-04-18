@@ -43,6 +43,7 @@
 // }
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MessagingService } from './push.notification.service';
+import { ForegroundNotificationsService } from './foreground.notification.service';
 
 @Component({
   selector: 'app-root',
@@ -71,12 +72,16 @@ export class AppComponent {
   @Output() toggleSidenav = new EventEmitter<void>();
   isSidenavOpen = false;
 
-  constructor(private messagingService: MessagingService) {
+  constructor(private messagingService: MessagingService,
+              private ForegroundNotificationsService: ForegroundNotificationsService) {
     this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
+    this.ForegroundNotificationsService.requestPermission();
   }
 
   onToggleSidenav() {
     this.toggleSidenav.emit();
   }
+
+
 }

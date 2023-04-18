@@ -33,6 +33,7 @@ import { environment } from 'src/environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NotifToggleComponent } from './notif-toggle/notif-toggle.component';
 //import { MessagingService } from './push.notification.service';
+import { ForegroundNotificationsService } from './foreground.notification.service';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminToggleComponent } from './admin-toggle/admin-toggle.component';
 import { AdminCardComponent } from './admin-page/admin-card/admin-card.component';
@@ -100,6 +101,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
       provide: SwRegistrationOptions,
       useFactory: () => ({ enabled: environment.production }),
     },
+    ForegroundNotificationsService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MessagingService } from '../push.notification.service';
+import { ForegroundNotificationsService } from '../foreground.notification.service';
 import { UserNotifInfo } from '../interfaces';
 //import { PushNotificationsService } from '../push.notification.service';
 
@@ -23,10 +24,11 @@ export class NotifToggleComponent {
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
   newSwitchVal = false;
-  private _notificationService: MessagingService;
 
   constructor(private db: AngularFirestore,
-              private messagingService: MessagingService) {
+              private messagingService: MessagingService,
+              private foregroundNotificationsService : ForegroundNotificationsService) {
+                this.foregroundNotificationsService.requestPermission();
   }
 
   ngOnInit() {
@@ -60,9 +62,22 @@ export class NotifToggleComponent {
       this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).set(notifInfo);
     }
     if (this.newSwitchVal === false) {
+      this.notify();
       this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).delete();
     }
-    //this.toggleNotifs.emit(this.machine);
+    console.log("emitting notification!");
+    this.toggleNotifs.emit(this.machine);
+
+  }
+
+  notify() {
+    let data: Array < any >= [];
+    data.push({
+        'title': 'Load Complete!',
+        'alertContent': 'Your machine has completed its task, please grab your laundry!'
+    });
+    console.log("notifying!")
+    this.foregroundNotificationsService.generateNotification(data);
   }
 
 }
