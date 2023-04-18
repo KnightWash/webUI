@@ -1,23 +1,91 @@
-.about-header {
-  text-align: center;
-  margin-top: 2%;
+.montserrat-500 {
+  font-family: "Montserrat";
+  font-weight: 500;
 }
-.about-header-text {
-  font-size: calc(30px + 1.5vw);
-  font-weight: 600;
-  color: maroon;
-  background-color: #ffe13a;
-  padding: 1%
 
+.montserrat-600 {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.montserrat-700 {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.inter-500 {
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.inter-600 {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.inter-700 {
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.cabin-500 {
+  font-family: "Cabin";
+  font-weight: 500;
+}
+
+.cabin-600 {
+  font-family: "Cabin";
+  font-weight: 600;
+}
+
+.cabin-700 {
+  font-family: "Cabin";
+  font-weight: 700;
+}
+
+.about-header-text {
+  font-size: calc(30px + 0.8vw);
+  color: maroon;
+  padding: 1%;
+  margin-top: 3vh;
 }
 .section-header {
   font-size: calc(20px + 1vw);
   margin-top: 2%;
   color: maroon;
-  padding-left: 0.5%
+  padding-left: 0.5%;
 }
 .about-text {
-  font-size: calc(10px + 0.8vw);
+  font-size: calc(11px + 0.9vw);
   line-height: 1.5em;
-  padding-left: 0.5%
+  padding-left: 0.5%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 5vh;
+}
+
+header {
+  margin: 0 auto;
+  border-bottom: 4px solid #ffe13a;
+}
+
+.about-header {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media screen and (min-width: 699px) {
+  .container {
+    width: 680px;
+    margin: 0 auto;
+  }
+
+  header {
+    width: 680px;
+  }
 }

@@ -1,24 +1,17 @@
-<h1>Graph of Busy Times</h1>
-<div>
-  <canvas baseChart class="chart" height="50"
-        [data]="timeData"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [type]="chartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-  </canvas>
+<header>
+  <h1 class="montserrat-600">Busy Times in the Last Week</h1>
+</header>
+<div class="parent-container">
+  <h2 class="section-header cabin-700">Bolt</h2>
+  <div class="chart-container">
+    <canvas id="timeDataBolt" class="chart" style="height: 300px"></canvas>
+  </div>
+  <h2 class="section-header cabin-700">Heyns</h2>
+  <div class="chart-container">
+    <canvas id="timeDataHeyns" class="chart" style="height: 300px"></canvas>
+  </div>
+  <h2 class="section-header cabin-700">Timmer</h2>
+  <div class="chart-container">
+    <canvas id="timeDataTimmer" class="chart" style="height: 300px"></canvas>
+  </div>
 </div>
-
-<h1>Which Building uses the most power</h1>
-<div>
-  <canvas baseChart class="chart" height="50"
-        [data]="energyData"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [type]="chartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-  </canvas>
-</div>
-
