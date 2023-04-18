@@ -1,6 +1,6 @@
 .machine-card {
   flex: 1;
-  margin-left: 5%;
+  min-width: 300px;
 }
 
 .name-label {
@@ -13,7 +13,7 @@
   font-weight: 500;
   color: darkred;
   flex: 1;
-  margin-left: 2%
+  margin-left: 2%;
 }
 
 .off-label {
@@ -21,7 +21,7 @@
   font-weight: 500;
   color: darkgreen;
   flex: 1;
-  margin-left: 2%
+  margin-left: 2%;
 }
 
 .unavailable-label {
@@ -29,9 +29,9 @@
   font-weight: 500;
   color: darkslategray;
   flex: 1;
-  margin-left: 2%
+  margin-left: 2%;
 }
 
 .toggle {
-  margin-left: 2%
+  margin-left: 2%;
 }

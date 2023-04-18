@@ -1,22 +1,44 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
-<header>
+<header class="form-header">
   <h1>Feedback Form</h1>
 </header>
 
 <body>
+  <div class="form">
+    <div class="email">Enter your email:</div>
+    <input
+      class="form-input"
+      name="formBox"
+      [(ngModel)]="email"
+      type="text"
+      placeholder="Calvin email, if possible."
+    />
+    <!-- <div class="question">What platform(s) do you use?</div>
+    <input
+      class="form-input"
+      name="formBox"
+      [(ngModel)]="platforms"
+      type="text"
+      placeholder="iPhone, Android, PC?"
+    /> -->
+    <div class="feedback">Tell us what you think!</div>
+    <textarea
+      class="form-input form-textarea"
+      name="formBox"
+      [(ngModel)]="availability"
+      placeholder="Give us ideas, critiques, complaints, etc."
+      cols="50"
+      rows="10"
+    >
+    </textarea>
 
-  <div>Enter your email:</div>
-  <input name="formBox" [(ngModel)]="email" type="text" placeholder="Calvin email, if possible.">
-  <div>What platform(s) do you use?</div>
-  <input name="formBox" [(ngModel)]="platforms" type="text" placeholder="iPhone, Android, PC?">
-  <div>Tell us what you think!</div>
-  <textarea name="formBox" [(ngModel)]="availability"
-    placeholder="Give us ideas, critiques, complaints, etc."
-    cols="50" rows="10">
-  </textarea>
-
-  <p></p>
-  <input (click)="sendMessage()" id="submit-button" class="submit-button" type="submit"
-    value="Submit Feedback">
-
+    <p></p>
+    <input
+      (click)="sendMessage()"
+      id="submit-button"
+      class="submit-button"
+      type="submit"
+      value="Submit Feedback"
+    />
+  </div>
 </body>

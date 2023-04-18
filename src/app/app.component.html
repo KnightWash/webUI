@@ -1,6 +1,9 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
 <!-- Toolbar navigation help from: https://www.techiediaries.com/angular-material-navigation-toolbar-sidenav/ -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
 <mat-toolbar>
   <mat-toolbar-row class="mobile-toolbar">
     <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
@@ -19,28 +22,59 @@
 
     <span class="menu-spacer"></span>
     <div class="options">
-      <a mat-button [routerLink]="'/home-page'" routerLinkActive="active" class="header-button">
+      <a
+        mat-button
+        [routerLink]="'/home-page'"
+        routerLinkActive="active"
+        class="header-button"
+      >
         Home
       </a>
-      <a mat-button [routerLink]="'/about-page'" routerLinkActive="active" class="header-button">
+      <a
+        mat-button
+        [routerLink]="'/analytics-page'"
+        routerLinkActive="active"
+        class="header-button"
+      >
+        Analytics
+      </a>
+      <a
+        mat-button
+        [routerLink]="'/about-page'"
+        routerLinkActive="active"
+        class="header-button"
+      >
         About
       </a>
       <!-- <a mat-button [routerLink]="'/admin-page'" routerLinkActive="active"> Admin </a> -->
-      <a mat-button [routerLink]="'/register-page'" routerLinkActive="active" class="header-button">
+      <a
+        mat-button
+        [routerLink]="'/register-page'"
+        routerLinkActive="active"
+        class="header-button"
+      >
         Send Feedback
-      </a>
-      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active" class="header-button">
-        Analytics
       </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-drawer #sidenav mode="side" (click)="sidenav.close()" (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
-  <ul>
+<mat-drawer
+  #sidenav
+  mode="side"
+  (click)="sidenav.close()"
+  (backdropClick)="sidenav.close()"
+  (keydown.escape)="sidenav.close()"
+>
+  <ul class="sidenav">
     <li>
       <a mat-button [routerLink]="'/home-page'" routerLinkActive="active">
         Home
+      </a>
+    </li>
+    <li>
+      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active">
+        Analytics
       </a>
     </li>
     <li>
@@ -53,14 +87,15 @@
         Send Feedback
       </a>
     </li>
-    <li>
-      <a mat-button [routerLink]="'/analytics-page'" routerLinkActive="active">
-        Analytics
-      </a>
-    </li>
   </ul>
 </mat-drawer>
 
-<div class="literally-everything-else" #sidenav (click)="sidenav.close()" (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
+<div
+  class="literally-everything-else"
+  #sidenav
+  (click)="sidenav.close()"
+  (backdropClick)="sidenav.close()"
+  (keydown.escape)="sidenav.close()"
+>
   <router-outlet></router-outlet>
 </div>

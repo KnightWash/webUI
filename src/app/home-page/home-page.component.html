@@ -1,30 +1,43 @@
 <!--Brian Langejans: TheBguy87 | Kurt Wietelmann: kwietelmann | 12/10/2022-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<mat-form-field appearance="fill" class="building-selector">
-  <mat-label>Choose a Hall</mat-label>
-  <mat-select [(value)]="selectedHall" (selectionChange)="onHallChange($event)">
-    <mat-option value="bolt">Bolt</mat-option>
-    <mat-option value="heyns">Heyns</mat-option>
-    <mat-option value="timmer">Timmer</mat-option>
-  </mat-select>
-</mat-form-field>
-<!-- <h1 class="building-header">{{this.selectedHall}}</h1> -->
-<div class="row">
-  <div class="column">
-    <h2 class="machine-header">Washers</h2>
-    <!-- for each machine, check to make sure it is in the correct buildinig and the correct type of machine -->
-    <ng-container class="card-container" *ngFor="let machine of washers">
-      <app-machine-card [machine]="machine" *ngIf="machine.name.indexOf('/' + this.selectedHall) > -1"
-        (toggleNotifs)="onChange($event)"></app-machine-card>
-    </ng-container>
-  </div>
-  <div class="column">
-    <h2 class="machine-header">Dryers</h2>
-    <ng-container class="card-container" *ngFor="let machine of dryers">
-      <app-machine-card [machine]="machine" *ngIf="machine.name.indexOf('/' + this.selectedHall) > -1"
-        (toggleNotifs)="onChange($event)"></app-machine-card>
-    </ng-container>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<div class="parent-container">
+  <mat-form-field appearance="fill" class="building-selector">
+    <mat-label>Choose a Hall</mat-label>
+    <mat-select
+      [(value)]="selectedHall"
+      (selectionChange)="onHallChange($event)"
+    >
+      <mat-option value="bolt">Bolt</mat-option>
+      <mat-option value="heyns">Heyns</mat-option>
+      <mat-option value="timmer">Timmer</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <h1 class="building-header">{{this.selectedHall}}</h1> -->
+  <div class="grid-parent-container">
+    <div class="grid-container">
+      <div class="grid-item">
+        <h2 class="machine-header">Washers</h2>
+        <!-- for each machine, check to make sure it is in the correct buildinig and the correct type of machine -->
+        <ng-container class="card-container" *ngFor="let machine of washers">
+          <app-machine-card
+            [machine]="machine"
+            *ngIf="machine.name.indexOf('/' + this.selectedHall) > -1"
+            (toggleNotifs)="onChange($event)"
+          ></app-machine-card>
+        </ng-container>
+      </div>
+      <div class="grid-item">
+        <h2 class="machine-header">Dryers</h2>
+        <ng-container class="card-container" *ngFor="let machine of dryers">
+          <app-machine-card
+            [machine]="machine"
+            *ngIf="machine.name.indexOf('/' + this.selectedHall) > -1"
+            (toggleNotifs)="onChange($event)"
+          ></app-machine-card>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>
-<br>
 
+<br />

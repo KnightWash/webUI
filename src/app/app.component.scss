@@ -12,6 +12,7 @@ mat-toolbar {
 // make sure nothing's covered up by the toolbar
 .literally-everything-else {
   transform: translateY(70px);
+  // padding-left: 5vw;
 }
 
 .knight-logo {
@@ -29,9 +30,21 @@ mat-drawer {
   z-index: 997;
 }
 
-
-ul {
+.sidenav {
+  padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidenav * {
+  width: 100%;
+  font-size: 1.1em;
+}
+
+.sidenav > li {
+  margin-bottom: 2vh;
 }
 
 .menu-icon {
@@ -54,17 +67,17 @@ ul {
 
 // mobile view
 @media (max-width: 699px) {
-  .custom-toolbar{
+  .custom-toolbar {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     border: 1 px solid pink;
-    min-width: 100vw;
+    // min-width: 100vw;
     // width: 100vw;
   }
 
-  .menu-button{
+  .menu-button {
     margin-right: auto;
   }
 
@@ -92,11 +105,10 @@ ul {
   }
 
   .options {
-    margin: auto
+    margin: auto;
   }
 
   .mobile-toolbar {
     display: none;
   }
-
 }

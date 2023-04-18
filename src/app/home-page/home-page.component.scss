@@ -1,4 +1,8 @@
 //help with rows and columns from https://www.w3schools.com/howto/howto_css_two_columns.asp
+mat-label {
+  display: block;
+}
+
 .card-container {
   display: flex;
   flex: 1;
@@ -6,23 +10,26 @@
   // border-color: black;
 }
 
-.column {
-  float: left;
-  // width: 30%;
-  margin-right: 5%;
-  min-width: 380px;
-  max-width: 500px;
+.parent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-parent-container {
+  width: fit-content;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
   // border: 1px solid green;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .building-selector {
-  font-size: calc(15px + .5vw);
+  font-size: calc(15px + 0.5vw);
   margin-top: 2%;
   margin-left: 1%;
   font-weight: 500;
@@ -30,6 +37,19 @@
 }
 
 .machine-header {
-  font-size: calc(20px + .3vw);
+  font-size: calc(20px + 0.3vw);
   margin-left: 5%;
+}
+
+@media screen and (min-width: 680px) {
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-item {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  // padding: 0 10vw;
 }
