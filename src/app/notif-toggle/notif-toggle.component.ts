@@ -6,6 +6,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Machine } from '../home-page/home-page.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MessagingService } from '../push.notification.service';
+import { ForegroundNotificationsService } from '../foreground.notification.service';
 import { UserNotifInfo } from '../interfaces';
 //import { PushNotificationsService } from '../push.notification.service';
 
@@ -23,16 +24,21 @@ export class NotifToggleComponent {
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
   newSwitchVal = false;
-  private _notificationService: MessagingService;
+  newDocid: 0;
+  toggleAllowed = false;
+
 
   constructor(private db: AngularFirestore,
-              private messagingService: MessagingService) {
+              private messagingService: MessagingService,
+              private foregroundNotificationsService : ForegroundNotificationsService) {
+                this.foregroundNotificationsService.requestPermission();
   }
 
   ngOnInit() {
     //this._notificationService.requestPermission();
     // set the new switch val to be the current one passed down from the parent homepage component
     this.newSwitchVal = this.machine.notifsOn;
+    this.machine.status === "Off" ? this.toggleAllowed = true : this.toggleAllowed = false;
     // if the new value is true and the machine is off, send the notification and update vals
     if (this.newSwitchVal === true && this.machine.status === "Off") {
       //this.notify();
@@ -57,12 +63,28 @@ export class NotifToggleComponent {
         token: this.messagingService.userToken
 
       }
-      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).set(notifInfo);
+      this.db.collection<UserNotifInfo>('/UserNotifs').add(notifInfo).then((docRef: any) => {
+        this.newDocid = docRef.id;
+        console.log('Document written with ID: ', docRef.id);
+      });
     }
     if (this.newSwitchVal === false) {
-      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).delete();
+      // this.notify();
+      this.db.collection<UserNotifInfo>('/UserNotifs').doc(`${this.newDocid}`).delete();
     }
-    //this.toggleNotifs.emit(this.machine);
+    console.log("emitting notification!");
+    this.toggleNotifs.emit(this.machine);
+
+  }
+
+  notify() {
+    let data: Array < any >= [];
+    data.push({
+        'title': 'Load Complete!',
+        'alertContent': 'Your machine has completed its task, please grab your laundry!'
+    });
+    console.log("notifying!")
+    this.foregroundNotificationsService.generateNotification(data);
   }
 
 }

@@ -3,6 +3,7 @@
   style="font-family: Montserrat; font-weight: 400"
   class="toggle"
   (change)="onChange($event)"
+  [disabled]="toggleAllowed"
   [(ngModel)]="newSwitchVal"
   >Notify Me!</mat-slide-toggle
 >
