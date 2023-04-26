@@ -1,10 +1,7 @@
 import {
   Component,
-  OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy,
-  ViewChildren,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService, IMqttServiceOptions } from 'ngx-mqtt';
@@ -37,9 +34,6 @@ export class AnalyticsPageComponent {
   public timmerTimes: any[] = [];
   public mqttJson: any;
   public topic: string;
-  public testx: any[] = [];
-  public testy: any[] = [];
-  public test: Chart;
   public timeDataBolt: Chart;
   public timeDataHeyns: Chart;
   public timeDataTimmer: Chart;
@@ -135,9 +129,6 @@ export class AnalyticsPageComponent {
     //console.log(this.msg.topic.substr(this.msg.topic.lastIndexOf('/')));
     //getting the topic name to determine which graph to update
     this.topic = this.msg.topic.substr(this.msg.topic.lastIndexOf('/'));
-    // console.log("Test x data: ", this.testx)
-    // console.log("Test y data: ", this.testy)
-
     if (this.topic === '/bolt') {
       this.resetGraph(this.timeDataBolt, this.boltData, this.boltTimes);
       //receive and parse json from mqtt message

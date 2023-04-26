@@ -64,6 +64,7 @@ export class HomePageComponent {
     }
   }
 
+  // set all machine values empty and subscribe to a different hall
   onHallChange(newHall: any) {
     this.selectedHall = newHall.value;
     this.machines = [];
@@ -99,8 +100,6 @@ export class HomePageComponent {
     let now: Date =  new Date();
     // number on the right is in seconds (e.g. 11 minutes is 660)
     if (now.getTime()/1000 - newMachine.timestamp >= 660 ) {
-      // newMachine.status = "Unavailable";
-      // newMachine.status = Number(now.getTime()/1000 - (newMachine.timestamp)).toString();
       newMachine.status = `$(Number(600)).toString()`;
     }
 
