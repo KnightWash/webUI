@@ -24,6 +24,9 @@ export class NotifToggleComponent {
   @Input() machine: Machine;
   @Output() toggleNotifs: EventEmitter<Machine> = new EventEmitter();
   newSwitchVal = false;
+  newDocid: 0;
+  toggleAllowed = false;
+
 
   constructor(private db: AngularFirestore,
               private messagingService: MessagingService,
@@ -35,6 +38,7 @@ export class NotifToggleComponent {
     //this._notificationService.requestPermission();
     // set the new switch val to be the current one passed down from the parent homepage component
     this.newSwitchVal = this.machine.notifsOn;
+    this.machine.status === "Off" ? this.toggleAllowed = true : this.toggleAllowed = false;
     // if the new value is true and the machine is off, send the notification and update vals
     if (this.newSwitchVal === true && this.machine.status === "Off") {
       //this.notify();
@@ -59,11 +63,14 @@ export class NotifToggleComponent {
         token: this.messagingService.userToken
 
       }
-      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).set(notifInfo);
+      this.db.collection<UserNotifInfo>('/UserNotifs').add(notifInfo).then((docRef: any) => {
+        this.newDocid = docRef.id;
+        console.log('Document written with ID: ', docRef.id);
+      });
     }
     if (this.newSwitchVal === false) {
-      this.notify();
-      this.db.collection<UserNotifInfo>('/UserNotifs').doc(this.userToken).delete();
+      // this.notify();
+      this.db.collection<UserNotifInfo>('/UserNotifs').doc(`${this.newDocid}`).delete();
     }
     console.log("emitting notification!");
     this.toggleNotifs.emit(this.machine);
